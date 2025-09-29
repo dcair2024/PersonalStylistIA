@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - PersonalStylistIA</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@@picocss/pico@1/css/pico.min.css">
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/PersonalStylistIA.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+        <nav class="container-fluid">
+            <a href="/" class="brand">Personal Stylist Ya</a>
+            <ul>
+                <li><a href="/Index">Home</a></li>
+                <li><a href="/Privacy">Privacy</a></li>
+                <li><a href="#" class="outline">Login/Registro</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main class="container">
+        @RenderBody()
+    </main>
+    <footer class="container-fluid text-center">
+        <p>&copy; 2025 - PersonalStylistIA - <a href="/Privacy">Privacy</a></p>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

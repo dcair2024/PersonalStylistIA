@@ -1,0 +1,195 @@
+﻿@page
+@model PersonalStylistIA.Pages.PromptModel
+
+<div class="container">
+    <h1>Personal Stylist Ya</h1>
+    <p>Crie sua sugestão de estilo!</p>
+
+    <form method="post" id="promptForm">
+        <div class="grid">
+            <div>
+                <label asp-for="Input.TextoDigitado">Descreva o estilo que você procura:</label>
+                <input asp-for="Input.TextoDigitado" id="promptInput" placeholder="Ex: look casual para o verão" />
+                <span asp-validation-for="Input.TextoDigitado" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="grid">
+            <div>
+                <label asp-for="Input.Ocasiao">Ocasião (opcional):</label>
+                <select asp-for="Input.Ocasiao" id="ocasiaoSelect">
+                    <option value="">Selecione...</option>
+                    <option value="casual">Casual</option>
+                    <option value="formal">Formal</option>
+                    <option value="festa">Festa</option>
+                    <option value="trabalho">Trabalho</option>
+                    <option value="esporte">Esporte</option>
+                    <option value="praia">Praia</option>
+                    <option value="inverno">Inverno</option>
+                </select>
+            </div>
+
+            <div>
+                <label asp-for="Input.Cores">Preferência de Cores (opcional):</label>
+                <select asp-for="Input.Cores" id="coresSelect">
+                    <option value="">Selecione...</option>
+                    <option value="quentes">Cores Quentes (vermelho, laranja, amarelo)</option>
+                    <option value="frias">Cores Frias (azul, verde, roxo)</option>
+                    <option value="neutras">Cores Neutras (branco, preto, cinza, bege)</option>
+                    <option value="vibrantes">Cores Vibrantes e Chamativas</option>
+                    <option value="pasteis">Cores Pastel Suaves</option>
+                    <option value="escuras">Cores Escuras</option>
+                    <option value="claras">Cores Claras</option>
+                </select>
+            </div>
+        </div>
+
+        <button type="submit" class="contrast" id="submitButton" aria-label="Gerar sugestão de moda">✨ Gerar Sugestão</button>
+    </form>
+
+    @* ESTADO DE LOADING MELHORADO *@
+    @if (Model.ProcessamentoIniciado)
+    {
+        <div class="loading-container">
+            <div class="spinner"></div>
+            <p><strong>Gerando sua sugestão de moda...</strong></p>
+            <small>Isso pode levar alguns segundos</small>
+        </div>
+    }
+
+    @* ESTADO DE ERRO BONITO *@
+    @if (Model.OcorreuErro && !string.IsNullOrEmpty(Model.MensagemErro))
+    {
+        <div class="error-container">
+            <p><strong>❌ @Model.MensagemErro</strong></p>
+            <small>Tentamos gerar com IA, mas usamos uma imagem alternativa.</small>
+        </div>
+    }
+
+    @* RESULTADO COM ANIMAÇÃO *@
+    @if (!string.IsNullOrEmpty(Model.ImagemGeradaUrl) && !Model.ProcessamentoIniciado)
+    {
+        <div class="grid mt-2 fade-in">
+            <h2>✨ Suas Sugestões</h2>
+            <div class="card">
+                <img src="@Model.ImagemGeradaUrl" alt="Look gerado pela IA" class="fade-in" />
+                <div class="card-body">
+                    <h5>Look Personalizado</h5>
+                    <p><em>"@Model.Input.TextoDigitado"</em></p>
+                    @if (Model.OcorreuErro)
+                    {
+                        <small class="text-muted">⚠️ Imagem de exemplo (IA temporariamente indisponível)</small>
+                    }
+                    else
+                    {
+                        <small class="text-success">✅ Gerado pela Inteligência Artificial</small>
+                    }
+                </div>
+            </div>
+
+            <h3>🛍️ Compre Agora</h3>
+            <div class="card product-card">
+                <div class="card-body">
+                    <h5>Lojas Parceiras</h5>
+                    <p>🏪 <strong>Loja Exemplo</strong></p>
+                    <a href="#" class="contrast outline">Ver Produtos</a>
+                    <small class="text-muted d-block mt-1">Mais opções em breve!</small>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<style>
+    .product-card:hover {
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        transition: all 0.3s ease;
+    }
+
+    .product-card:hover a {
+        background: #0056b3;
+        transition: background 0.3s ease;
+    }
+</style>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        // Bloqueio de clique duplo + UX melhorada + Feedback Progressivo
+        const form = document.getElementById('promptForm');
+        const submitBtn = document.getElementById('submitButton');
+        const originalText = submitBtn.textContent;
+        let loadingTimer = null;
+        let messageTimer = null;
+
+        if (form && submitBtn) {
+            form.addEventListener('submit', function (e) {
+                if (!form.checkValidity()) {
+                    e.preventDefault();
+                    return;
+                }
+
+                // UX: Botão fica desabilitado com feedback visual
+                submitBtn.disabled = true;
+                submitBtn.textContent = '⏳ Gerando...';
+                submitBtn.classList.add('loading');
+
+                // NOVO: Feedback progressivo durante loading
+                startProgressiveFeedback();
+            });
+
+            // Reset do botão após carregamento
+            window.addEventListener('load', function() {
+                clearProgressiveFeedback();
+                if (submitBtn.disabled) {
+                    setTimeout(() => {
+                        submitBtn.disabled = false;
+                        submitBtn.textContent = originalText;
+                        submitBtn.classList.remove('loading');
+                    }, 1000);
+                }
+            });
+        }
+
+        // NOVO: Sistema de feedback progressivo
+        function startProgressiveFeedback() {
+            const loadingContainer = document.querySelector('.loading-container p');
+
+            if (!loadingContainer) return;
+
+            // Após 5 segundos: Primeira mensagem
+            messageTimer = setTimeout(() => {
+                loadingContainer.innerHTML = '<strong>Ainda processando...</strong><br><small>A IA está criando sua imagem personalizada</small>';
+            }, 5000);
+
+            // Após 10 segundos: Mensagem de paciência
+            loadingTimer = setTimeout(() => {
+                loadingContainer.innerHTML = '<strong>Quase lá!</strong><br><small>Redes lentas podem demorar até 20 segundos</small>';
+            }, 10000);
+
+            // Após 15 segundos: Aviso de timeout próximo
+            setTimeout(() => {
+                if (loadingContainer.isConnected) {
+                    loadingContainer.innerHTML = '<strong>Finalizando...</strong><br><small>Aguarde mais alguns segundos</small>';
+                }
+            }, 15000);
+        }
+
+        function clearProgressiveFeedback() {
+            if (loadingTimer) clearTimeout(loadingTimer);
+            if (messageTimer) clearTimeout(messageTimer);
+        }
+
+        // Animação suave para resultados
+        document.querySelectorAll('.fade-in').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+
+            setTimeout(() => {
+                el.style.transition = 'all 0.5s ease';
+                el.style.opacity = '1';
+                el.style.transform = 'translateY(0)';
+            }, 100);
+        });
+    </script>
+}

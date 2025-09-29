@@ -1,0 +1,159 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Davi\\source\\repos\\PersonalStylistIA\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{EE4DBB79-BE53-42F3-B1C9-EE8C75A7BF82}|PersonalStylistIA\\PersonalStylistIA.csproj|c:\\users\\davi\\source\\repos\\personalstylistia\\personalstylistia\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{EE4DBB79-BE53-42F3-B1C9-EE8C75A7BF82}|PersonalStylistIA\\PersonalStylistIA.csproj|solutionrelative:personalstylistia\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EE4DBB79-BE53-42F3-B1C9-EE8C75A7BF82}|PersonalStylistIA\\PersonalStylistIA.csproj|c:\\users\\davi\\source\\repos\\personalstylistia\\personalstylistia\\services\\iopenaiimageservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EE4DBB79-BE53-42F3-B1C9-EE8C75A7BF82}|PersonalStylistIA\\PersonalStylistIA.csproj|solutionrelative:personalstylistia\\services\\iopenaiimageservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EE4DBB79-BE53-42F3-B1C9-EE8C75A7BF82}|PersonalStylistIA\\PersonalStylistIA.csproj|c:\\users\\davi\\source\\repos\\personalstylistia\\personalstylistia\\pages\\prompt.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{EE4DBB79-BE53-42F3-B1C9-EE8C75A7BF82}|PersonalStylistIA\\PersonalStylistIA.csproj|solutionrelative:personalstylistia\\pages\\prompt.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EE4DBB79-BE53-42F3-B1C9-EE8C75A7BF82}|PersonalStylistIA\\PersonalStylistIA.csproj|c:\\users\\davi\\source\\repos\\personalstylistia\\personalstylistia\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{EE4DBB79-BE53-42F3-B1C9-EE8C75A7BF82}|PersonalStylistIA\\PersonalStylistIA.csproj|solutionrelative:personalstylistia\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EE4DBB79-BE53-42F3-B1C9-EE8C75A7BF82}|PersonalStylistIA\\PersonalStylistIA.csproj|c:\\users\\davi\\source\\repos\\personalstylistia\\personalstylistia\\pages\\prompt.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EE4DBB79-BE53-42F3-B1C9-EE8C75A7BF82}|PersonalStylistIA\\PersonalStylistIA.csproj|solutionrelative:personalstylistia\\pages\\prompt.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EE4DBB79-BE53-42F3-B1C9-EE8C75A7BF82}|PersonalStylistIA\\PersonalStylistIA.csproj|c:\\users\\davi\\source\\repos\\personalstylistia\\personalstylistia\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EE4DBB79-BE53-42F3-B1C9-EE8C75A7BF82}|PersonalStylistIA\\PersonalStylistIA.csproj|solutionrelative:personalstylistia\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EE4DBB79-BE53-42F3-B1C9-EE8C75A7BF82}|PersonalStylistIA\\PersonalStylistIA.csproj|c:\\users\\davi\\source\\repos\\personalstylistia\\personalstylistia\\services\\openaiimageservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EE4DBB79-BE53-42F3-B1C9-EE8C75A7BF82}|PersonalStylistIA\\PersonalStylistIA.csproj|solutionrelative:personalstylistia\\services\\openaiimageservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EE4DBB79-BE53-42F3-B1C9-EE8C75A7BF82}|PersonalStylistIA\\PersonalStylistIA.csproj|c:\\users\\davi\\source\\repos\\personalstylistia\\personalstylistia\\personalstylistia.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{EE4DBB79-BE53-42F3-B1C9-EE8C75A7BF82}|PersonalStylistIA\\PersonalStylistIA.csproj|solutionrelative:personalstylistia\\personalstylistia.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\Davi\\source\\repos\\PersonalStylistIA\\PersonalStylistIA\\appsettings.json",
+              "RelativeDocumentMoniker": "PersonalStylistIA\\appsettings.json",
+              "ToolTip": "C:\\Users\\Davi\\source\\repos\\PersonalStylistIA\\PersonalStylistIA\\appsettings.json",
+              "RelativeToolTip": "PersonalStylistIA\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-09-28T22:24:33.233Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "OpenAIImageService.cs",
+              "DocumentMoniker": "C:\\Users\\Davi\\source\\repos\\PersonalStylistIA\\PersonalStylistIA\\Services\\OpenAIImageService.cs",
+              "RelativeDocumentMoniker": "PersonalStylistIA\\Services\\OpenAIImageService.cs",
+              "ToolTip": "C:\\Users\\Davi\\source\\repos\\PersonalStylistIA\\PersonalStylistIA\\Services\\OpenAIImageService.cs",
+              "RelativeToolTip": "PersonalStylistIA\\Services\\OpenAIImageService.cs",
+              "ViewState": "AgIAADwAAAAAAAAAAAAowAwAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-28T21:49:27.801Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "IOpenAIImageService.cs",
+              "DocumentMoniker": "C:\\Users\\Davi\\source\\repos\\PersonalStylistIA\\PersonalStylistIA\\Services\\IOpenAIImageService.cs",
+              "RelativeDocumentMoniker": "PersonalStylistIA\\Services\\IOpenAIImageService.cs",
+              "ToolTip": "C:\\Users\\Davi\\source\\repos\\PersonalStylistIA\\PersonalStylistIA\\Services\\IOpenAIImageService.cs",
+              "RelativeToolTip": "PersonalStylistIA\\Services\\IOpenAIImageService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAA6wAMAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-28T21:39:55.597Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "PersonalStylistIA.csproj",
+              "DocumentMoniker": "C:\\Users\\Davi\\source\\repos\\PersonalStylistIA\\PersonalStylistIA\\PersonalStylistIA.csproj",
+              "RelativeDocumentMoniker": "PersonalStylistIA\\PersonalStylistIA.csproj",
+              "ToolTip": "C:\\Users\\Davi\\source\\repos\\PersonalStylistIA\\PersonalStylistIA\\PersonalStylistIA.csproj",
+              "RelativeToolTip": "PersonalStylistIA\\PersonalStylistIA.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-09-26T18:01:34.039Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "site.css",
+              "DocumentMoniker": "C:\\Users\\Davi\\source\\repos\\PersonalStylistIA\\PersonalStylistIA\\wwwroot\\css\\site.css",
+              "RelativeDocumentMoniker": "PersonalStylistIA\\wwwroot\\css\\site.css",
+              "ToolTip": "C:\\Users\\Davi\\source\\repos\\PersonalStylistIA\\PersonalStylistIA\\wwwroot\\css\\site.css",
+              "RelativeToolTip": "PersonalStylistIA\\wwwroot\\css\\site.css",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAFQAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-09-26T14:24:04.214Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Davi\\source\\repos\\PersonalStylistIA\\PersonalStylistIA\\Program.cs",
+              "RelativeDocumentMoniker": "PersonalStylistIA\\Program.cs",
+              "ToolTip": "C:\\Users\\Davi\\source\\repos\\PersonalStylistIA\\PersonalStylistIA\\Program.cs",
+              "RelativeToolTip": "PersonalStylistIA\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-26T13:35:36.787Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "prompt.cshtml.cs",
+              "DocumentMoniker": "C:\\Users\\Davi\\source\\repos\\PersonalStylistIA\\PersonalStylistIA\\Pages\\prompt.cshtml.cs",
+              "RelativeDocumentMoniker": "PersonalStylistIA\\Pages\\prompt.cshtml.cs",
+              "ToolTip": "C:\\Users\\Davi\\source\\repos\\PersonalStylistIA\\PersonalStylistIA\\Pages\\prompt.cshtml.cs",
+              "RelativeToolTip": "PersonalStylistIA\\Pages\\prompt.cshtml.cs",
+              "ViewState": "AgIAACkAAAAAAAAAAADwvzgAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-09-25T20:05:59.776Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "prompt.cshtml",
+              "DocumentMoniker": "C:\\Users\\Davi\\source\\repos\\PersonalStylistIA\\PersonalStylistIA\\Pages\\prompt.cshtml",
+              "RelativeDocumentMoniker": "PersonalStylistIA\\Pages\\prompt.cshtml",
+              "ToolTip": "C:\\Users\\Davi\\source\\repos\\PersonalStylistIA\\PersonalStylistIA\\Pages\\prompt.cshtml",
+              "RelativeToolTip": "PersonalStylistIA\\Pages\\prompt.cshtml",
+              "ViewState": "AgIAAF0AAAAAAAAAAAAAABYAAAA6AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-09-25T20:05:51.005Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

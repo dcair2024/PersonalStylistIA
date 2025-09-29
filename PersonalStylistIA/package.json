@@ -1,0 +1,10 @@
+{
+  "name": "personal-stylist-ya",
+  "version": "1.0.0",
+  "devDependencies": {
+    "tailwindcss": "^3.3.0"
+  },
+  "scripts": {
+    "build-css": "tailwindcss -i ./wwwroot/css/input.css -o ./wwwroot/css/output.css --watch"
+  }
+}
