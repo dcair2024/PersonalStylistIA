@@ -4,3 +4,8 @@ obj/
 *.user
 *.db
 .vs/
+.vs/
+bin/
+obj/
+node_modules/
+wwwroot/lib/
