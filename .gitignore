@@ -1,0 +1,36 @@
+appsettings.json
+bin/
+obj/
+*.user
+*.db
+.vs/
+.vs/
+bin/
+obj/
+node_modules/
+wwwroot/lib/
+# Build results
+[Bb]in/
+[Oo]bj/
+
+# Visual Studio
+.vs/
+*.user
+*.aps
+*.pdb
+*.userosscache
+
+# NuGet
+[Nn]u[Gg]et/
+*.nupkg
+packages/
+
+# VS Code
+.vscode/
+
+# ASP.NET Core
+appsettings.Development.json
+
+# Node.js
+node_modules/
+npm-debug.log*

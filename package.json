@@ -1,18 +1,10 @@
 {
-  "name": "nome-do-seu-projeto",
+  "name": "personal-stylist-ya",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "init:tailwind": "tailwindcss init -p",
-    "build:css": "tailwindcss -i ./Styles/site.css -o ./wwwroot/css/site.css --watch"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "devDependencies": {
-    "autoprefixer": "^10.4.21",
-    "postcss": "^8.5.6",
-    "tailwindcss": "^3.4.17"
+    "tailwindcss": "^3.3.0"
+  },
+  "scripts": {
+    "build-css": "tailwindcss -i ./wwwroot/css/input.css -o ./wwwroot/css/output.css --watch"
   }
 }
