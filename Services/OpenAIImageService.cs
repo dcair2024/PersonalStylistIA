@@ -14,7 +14,9 @@ public class OpenAIImageService : IOpenAIImageService
         _logger = logger;
 
         _httpClient.BaseAddress = new Uri("https://api.openai.com/v1/");
-        _httpClient.Timeout = TimeSpan.FromSeconds(15);
+        _httpClient.Timeout = TimeSpan.FromSeconds(60); 
+        using var cts = new CancellationTokenSource(TimeSpan.FromSeconds(60));
+
 
         // ✅ CONFIGURAR HEADER DE AUTORIZAÇÃO UMA VEZ
         _httpClient.DefaultRequestHeaders.Authorization =
@@ -38,6 +40,7 @@ public class OpenAIImageService : IOpenAIImageService
             var content = new StringContent(json, Encoding.UTF8, "application/json");
 
             _logger.LogInformation("🔄 Enviando prompt para OpenAI: {PromptLength} caracteres", prompt.Length);
+
 
             var response = await _httpClient.PostAsync("images/generations", content, cts.Token);
 
