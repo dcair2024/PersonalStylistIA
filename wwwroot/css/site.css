@@ -31,14 +31,13 @@ body {
 /* ============================
    Custom Theme (Carol → Claudio)
 ============================ */
-
 /* Importando fontes do Google */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;600&display=swap');
 
 /* Variáveis globais */
 :root {
-    --primary-blue: #1D4A89; /* Azul profundo */
-    --accent-orange: #FF6600; /* Laranja vibrante */
+    --primary-blue: #1D4A89;
+    --accent-orange: #FF6600;
     --background-light: #F5F5F5;
     --font-body: 'Open Sans', sans-serif;
     --font-heading: 'Montserrat', sans-serif;
@@ -60,7 +59,6 @@ h1, h2, h3, h4, h5, h6 {
 /* ============================
    Wireframe Custom Styles
 ============================ */
-
 /* Hero Section */
 .hero-section {
     text-align: center;
@@ -93,7 +91,7 @@ input[type="submit"] {
     button:hover,
     a[role="button"]:hover,
     input[type="submit"]:hover {
-        background-color: #CC5200; /* laranja mais escuro */
+        background-color: #CC5200;
     }
 
 /* Cards */
@@ -103,11 +101,6 @@ input[type="submit"] {
     border-radius: 0.5rem;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
-
-    .card img {
-        max-width: 100%;
-        height: auto;
-    }
 
 /* Grid */
 .grid {
@@ -152,3 +145,124 @@ select {
         background: #0056b3;
         transition: background 0.3s ease;
     }
+
+/* ========================================
+   CORREÇÃO DE TAMANHO DE IMAGENS - Claudio
+   ======================================== */
+
+/* Imagens geradas pela IA */
+.card img {
+    width: 100%;
+    height: auto;
+    max-height: 600px;
+    object-fit: cover;
+    border-radius: 8px;
+    display: block;
+}
+
+/* Container de imagem */
+.image-container {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    max-width: 100%;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .card img {
+        max-height: 400px;
+    }
+}
+
+/* ========================================
+   EFEITO DE ZOOM/LUPA ON HOVER - Claudio
+   ======================================== */
+
+/* Container preparado para zoom */
+.image-zoom-container {
+    position: relative;
+    overflow: hidden;
+    cursor: zoom-in;
+    border-radius: 8px;
+}
+
+    /* Imagem com transição suave */
+    .image-zoom-container img {
+        transition: transform 0.5s ease !important;
+        display: block;
+        width: 100%;
+    }
+    .image-zoom-container:hover img {
+        transform: scale(3,0); /* aumenta 50% */
+    }
+    
+    
+ 
+
+
+
+    /* Overlay escuro sutil no hover */
+    .image-zoom-container::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.1);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        pointer-events: none;
+    }
+
+    .image-zoom-container:hover::after {
+        opacity: 1;
+    }
+
+    /* Ícone de lupa */
+    .image-zoom-container .zoom-icon {
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        background: rgba(255, 255, 255, 0.9);
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        pointer-events: none;
+        font-size: 1.2rem;
+    }
+
+    .image-zoom-container {
+        position: relative;
+        cursor: zoom-in;
+        border-radius: 8px;
+        overflow: visible; /* LIBERA a imagem para "sair" do quadro */
+}
+
+    /* Imagem preparada para zoom */
+    .image-zoom-container img {
+        transition: transform 0.3s ease;
+        width: 100%;
+        height: auto;
+        transform-origin: center center;
+        position: relative;
+        z-index: 1; /* mantém acima do container */
+    }
+
+        /* No hover, a imagem cresce e aparece sobre os outros */
+    .image-zoom-container img.zoomed {
+         position: absolute;
+         top: 0;
+         left: 0;
+         z-index: 9999;
+         box-shadow: 0 4px 16px rgba(0,0,0,0.3); /* sombra para destacar */
+        }
+
+
+

@@ -72,7 +72,11 @@
         <div class="grid mt-2 fade-in">
             <h2>✨ Suas Sugestões</h2>
             <div class="card">
-                <img src="@Model.ImagemGeradaUrl" alt="Look gerado pela IA" class="fade-in" />
+                <div class="image-zoom-container">
+                    <img src="@Model.ImagemGeradaUrl" alt="Look gerado pela IA" class="fade-in" />
+                    <div class="zoom-icon">🔍</div>
+                </div>
+
                 <div class="card-body">
                     <h5>Look Personalizado</h5>
                     <p><em>"@Model.Input.TextoDigitado"</em></p>
@@ -86,6 +90,16 @@
                     }
                 </div>
             </div>
+
+            <!-- Adicionar após resultado -->
+            <div class="save-section mt-2">
+                <button class="contrast" onclick="salvarLook()" aria-label="Salvar look no histórico">💾 Salvar Look</button>
+            </div>
+            <script>
+                function salvarLook() {
+                    alert('Look salvo no painel de usuário!'); // Placeholder para backend
+                }
+            </script>
 
             <h3>🛍️ Compre Agora</h3>
             <div class="card product-card">
@@ -111,6 +125,8 @@
         transition: background 0.3s ease;
     }
 </style>
+
+
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
@@ -191,5 +207,32 @@
                 el.style.transform = 'translateY(0)';
             }, 100);
         });
+
+
+                document.querySelectorAll('.image-zoom-container').forEach(container => {
+            const img = container.querySelector('img');
+
+            container.addEventListener('mousemove', e => {
+                const rect = container.getBoundingClientRect();
+                const x = ((e.clientX - rect.left) / rect.width) * 100;
+                const y = ((e.clientY - rect.top) / rect.height) * 100;
+
+                img.classList.add("zoomed");
+                img.style.transformOrigin = `${x}% ${y}%`;
+                img.style.transform = "scale(3)"; // zoom forte
+            });
+
+            container.addEventListener('mouseleave', () => {
+                img.classList.remove("zoomed");
+                img.style.transformOrigin = "center center";
+                img.style.transform = "scale(1)";
+            });
+        });
+
+
+            
+
+
     </script>
+
 }
