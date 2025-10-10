@@ -1,0 +1,77 @@
+﻿<head>
+    <title>Personal Stylist IA - Wireframe</title>
+    <style>
+        /* Importando as fontes Open Sans e Montserrat */
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;600&display=swap');
+
+        /* DEFINIÇÃO DA PALETA DE CORES */
+        :root {
+            --primary-blue: #1D4A89; /* Azul Profundo: Autoridade e Confiança */
+            --accent-orange: #FF6600; /* Laranja Vibrante: Destaque para CTAs */
+            --background-light: #F5F5F5;
+            --font-body: 'Open Sans', sans-serif;
+            --font-heading: 'Montserrat', sans-serif;
+        }
+
+        body {
+            /* Aplicação da fonte e cor de fundo */
+            font-family: var(--font-body);
+            background-color: var(--background-light);
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Aplicação da fonte e cor primária para títulos */
+        .hero-section h1, .cta-section h2 {
+            font-family: var(--font-heading);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .hero-section {
+            text-align: center;
+            padding: 4rem 0;
+            /* Cor primária aplicada */
+            background-color: var(--primary-blue);
+            color: white;
+            border-radius: 5px;
+        }
+
+        /* ... outros estilos como .how-it-works ... */
+
+        .cta-section {
+            text-align: center;
+            padding: 40px 0;
+            /* Cor primária aplicada, removendo o gradiente inconsistente */
+            background-color: var(--primary-blue);
+            color: white;
+            border-radius: 5px;
+        }
+
+        button {
+            /* Cor de destaque (Laranja) aplicada ao botão de CTA */
+            background-color: var(--accent-orange);
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+            button:hover {
+                /* Hover Laranja Escuro */
+                background-color: #CC5200;
+            }
+
+        /* Estilos do botão para o wireframe PromptModel.cshtml */
+        .cta-button {
+            background-color: var(--accent-orange) !important;
+            color: white !important;
+        }
+    </style>
+</head>

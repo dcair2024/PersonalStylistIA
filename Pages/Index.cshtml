@@ -1,0 +1,176 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home - Personal Stylist IA";
+}
+
+<div class="container">
+    <!-- Hero Section -->
+    <section class="hero-section" style="text-align: center; padding: 4rem 0;">
+        <hgroup>
+            <h1 style="font-size: 3rem; margin-bottom: 1rem;">
+                ✨ Personal Stylist <span style="color: #7c3aed;">IA</span>
+            </h1>
+            <p style="font-size: 1.25rem; color: #6b7280; max-width: 600px; margin: 0 auto;">
+                Transforme sua ideia em looks incríveis com inteligência artificial.
+                Descreva seu estilo e deixe a IA criar sugestões personalizadas para você.
+            </p>
+        </hgroup>
+
+        <div style="margin-top: 2rem;">
+            <a href="/Prompt" role="button" class="contrast" style="font-size: 1.125rem; padding: 1rem 2rem;">
+                🎨 Criar Minha Sugestão
+            </a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section" style="margin-top: 4rem;">
+        <h2 style="text-align: center; margin-bottom: 2rem;">Como Funciona</h2>
+
+        <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem;">
+            <!-- Feature 1 -->
+            <article style="text-align: center; padding: 1.5rem;">
+                <div style="font-size: 3rem; margin-bottom: 1rem;">💭</div>
+                <h3>1. Descreva seu Estilo</h3>
+                <p style="color: #6b7280;">
+                    Digite como você quer se vestir: casual, formal, festa ou qualquer ocasião.
+                </p>
+            </article>
+
+            <!-- Feature 2 -->
+            <article style="text-align: center; padding: 1.5rem;">
+                <div style="font-size: 3rem; margin-bottom: 1rem;">🤖</div>
+                <h3>2. IA Gera Looks</h3>
+                <p style="color: #6b7280;">
+                    Nossa inteligência artificial cria imagens personalizadas baseadas no seu gosto.
+                </p>
+            </article>
+
+            <!-- Feature 3 -->
+            <article style="text-align: center; padding: 1.5rem;">
+                <div style="font-size: 3rem; margin-bottom: 1rem;">🛍️</div>
+                <h3>3. Encontre Produtos</h3>
+                <p style="color: #6b7280;">
+                    Veja sugestões de lojas parceiras para comprar peças similares.
+                </p>
+            </article>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section" style="margin-top: 4rem; padding: 3rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 10px; text-align: center; color: white;">
+        <h2 style="color: white; margin-bottom: 1rem;">Pronto para Descobrir seu Estilo?</h2>
+        <p style="margin-bottom: 2rem; opacity: 0.9;">
+            Experimente gratuitamente e veja a mágica da IA transformando suas ideias em looks reais.
+        </p>
+        <a href="/Prompt" role="button" style="background: white; color: #667eea; border: none;">
+            Começar Agora →
+        </a>
+    </section>
+
+    <!-- Social Proof / Stats -->
+    <section class="stats-section" style="margin-top: 3rem; text-align: center;">
+        <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem;">
+            <div>
+                <h3 style="font-size: 2.5rem; color: #7c3aed; margin-bottom: 0.5rem;">1000+</h3>
+                <p style="color: #6b7280;">Looks Gerados</p>
+            </div>
+            <div>
+                <h3 style="font-size: 2.5rem; color: #7c3aed; margin-bottom: 0.5rem;">95%</h3>
+                <p style="color: #6b7280;">Satisfação</p>
+            </div>
+            <div>
+                <h3 style="font-size: 2.5rem; color: #7c3aed; margin-bottom: 0.5rem;">24/7</h3>
+                <p style="color: #6b7280;">Disponível</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Info -->
+    <footer style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid #e5e7eb; text-align: center; color: #6b7280;">
+        <p><small>Powered by OpenAI • Criado com ❤️ pela equipe Personal Stylist IA</small></p>
+    </footer>
+</div>
+
+<style>
+    /* Hero Animation */
+    .hero-section h1 {
+        animation: fadeInUp 0.8s ease;
+    }
+
+    .hero-section p {
+        animation: fadeInUp 1s ease;
+    }
+
+    .hero-section a {
+        animation: fadeInUp 1.2s ease;
+    }
+
+    <style >
+    /* Hero Animation */
+    .hero-section h1 {
+        animation: fadeInUp 0.8s ease;
+    }
+
+    .hero-section p {
+        animation: fadeInUp 1s ease;
+    }
+
+    .hero-section a {
+        animation: fadeInUp 1.2s ease;
+    }
+
+    @@keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Feature Cards Hover */
+    .features-section article {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+        .features-section article:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+    /* CTA Gradient Animation */
+    .cta-section {
+        animation: gradientShift 3s ease infinite;
+        background-size: 200% 200%;
+    }
+
+    @@keyframes gradientShift {
+        0% {
+            background-position: 0% 50%;
+        }
+
+        50% {
+            background-position: 100% 50%;
+        }
+
+        100% {
+            background-position: 0% 50%;
+        }
+    }
+
+    /* Responsive */
+    @@media (max-width: 768px) {
+        .hero-section h1 {
+            font-size: 2rem;
+        }
+
+        .hero-section p {
+            font-size: 1rem;
+        }
+    }
+</style>
