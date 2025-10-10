@@ -263,6 +263,48 @@ select {
          z-index: 9999;
          box-shadow: 0 4px 16px rgba(0,0,0,0.3); /* sombra para destacar */
         }
+/* Estilo para mensagem de erro de login */
+.error-banner {
+    background-color: #fef2f2;
+    border: 1px solid #fecaca;
+    color: #dc2626;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+    .error-banner .validation-summary-errors {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+        .error-banner .validation-summary-errors li {
+            margin: 0;
+            padding: 0;
+
+
+        }
+
+/* Correção de espaçamento entre o banner de erro e o formulário */
+.error-banner {
+    margin-block-end: 1rem;
+}
+
+/* Garantir que o botão mantenha a posição ao exibir erro */
+form button[type="submit"] {
+    margin-top: 0.5rem;
+}
+
+/* Unificação visual entre Login e Register */
+.auth-container {
+    max-width: 420px;
+    margin: 0 auto;
+    padding: 1.5rem;
+}
 
 
 
