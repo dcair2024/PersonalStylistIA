@@ -1,0 +1,401 @@
+﻿@page
+@model PersonalStylistIA.Pages.PromptModel
+@{
+    ViewData["Title"] = "Sugestão de Estilo";
+}
+
+@* Coloca o Prompt dentro do layout expandido (até 1200px) *@
+<div class="content-expanded">
+    <h1>Personal Stylist Ya</h1>
+    <p>Crie sua sugestão de estilo!</p>
+
+    <form method="post" id="promptForm">
+        <div class="grid">
+            <div>
+                <label asp-for="Input.TextoDigitado">Descreva o estilo que você procura:</label>
+                <input asp-for="Input.TextoDigitado" id="promptInput" placeholder="Ex: look casual para o verão" />
+                <span asp-validation-for="Input.TextoDigitado" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="grid">
+            <div>
+                <label asp-for="Input.Ocasiao">Ocasião (opcional):</label>
+                <select asp-for="Input.Ocasiao" id="ocasiaoSelect">
+                    <option value="">Selecione...</option>
+                    <option value="casual">Casual</option>
+                    <option value="formal">Formal</option>
+                    <option value="festa">Festa</option>
+                    <option value="trabalho">Trabalho</option>
+                    <option value="esporte">Esporte</option>
+                    <option value="praia">Praia</option>
+                    <option value="inverno">Inverno</option>
+                </select>
+            </div>
+
+            <div>
+                <label asp-for="Input.Cores">Preferência de Cores (opcional):</label>
+                <select asp-for="Input.Cores" id="coresSelect">
+                    <option value="">Selecione...</option>
+                    <option value="quentes">Cores Quentes (vermelho, laranja, amarelo)</option>
+                    <option value="frias">Cores Frias (azul, verde, roxo)</option>
+                    <option value="neutras">Cores Neutras (branco, preto, cinza, bege)</option>
+                    <option value="vibrantes">Cores Vibrantes e Chamativas</option>
+                    <option value="pasteis">Cores Pastel Suaves</option>
+                    <option value="escuras">Cores Escuras</option>
+                    <option value="claras">Cores Claras</option>
+                </select>
+            </div>
+        </div>
+
+        <button type="submit" class="contrast" id="submitButton" aria-label="Gerar sugestão de moda">✨ Gerar Sugestão</button>
+    </form>
+    <!-- ============================= -->
+    <!-- 🔹 NOVO BLOCO: UPLOAD DE IMAGEM (FT-013) -->
+    <!-- ============================= -->
+    <hr class="my-4" />
+
+    <form method="post" enctype="multipart/form-data" asp-page-handler="Upload">
+        <h2>📤 Enviar sua imagem para análise IA</h2>
+
+        <div class="grid">
+            <div>
+                <label for="imageUpload">Escolha uma imagem:</label>
+                <input type="file" asp-for="ImagemEnviada" id="imageUpload" accept="image/*" />
+            </div>
+        </div>
+
+        <button type="submit" class="contrast mt-2" aria-label="Enviar imagem para IA">
+            🚀 Enviar Imagem
+        </button>
+    </form>
+
+    @* ESTADO DE LOADING MELHORADO *@
+    @if (Model.ProcessamentoIniciado)
+    {
+        <div class="loading-container">
+            <div class="spinner"></div>
+            <p><strong>Gerando sua sugestão de moda...</strong></p>
+            <small>Isso pode levar alguns segundos</small>
+        </div>
+    }
+
+    @* ESTADO DE ERRO BONITO *@
+    @if (Model.OcorreuErro && !string.IsNullOrEmpty(Model.MensagemErro))
+    {
+        <div class="error-container">
+            <p><strong>❌ @Model.MensagemErro</strong></p>
+            <small>Tentamos gerar com IA, mas usamos uma imagem alternativa.</small>
+        </div>
+    }
+
+    @* RESULTADO COM ANIMAÇÃO *@
+    @if (!string.IsNullOrEmpty(Model.ImagemGeradaUrl) && !Model.ProcessamentoIniciado)
+    {
+        <div class="grid mt-2 fade-in">
+            <h2>✨ Suas Sugestões</h2>
+            <div class="card">
+                <div class="image-zoom-container">
+                    <img src="@Model.ImagemGeradaUrl" alt="Look gerado pela IA" class="fade-in" />
+                    <div class="zoom-icon">🔍</div>
+                </div>
+
+                <div class="card-body">
+                    <h5>Look Personalizado</h5>
+                    <p><em>"@Model.Input.TextoDigitado"</em></p>
+                    @if (Model.OcorreuErro)
+                    {
+                        <small class="text-muted">⚠️ Imagem de exemplo (IA temporariamente indisponível)</small>
+                    }
+                    else
+                    {
+                        <small class="text-success">✅ Gerado pela Inteligência Artificial</small>
+                    }
+                </div>
+            </div>
+
+            <!-- Adicionar após resultado -->
+            <div class="save-section mt-2">
+                <button class="contrast" onclick="salvarLook()" aria-label="Salvar look no histórico">💾 Salvar Look</button>
+            </div>
+            <script>
+                function salvarLook() {
+                    alert('Look salvo no painel de usuário!'); // Placeholder para backend
+                }
+            </script>
+
+            <h3>🛍️ Compre Agora</h3>
+            <div class="card product-card">
+                <div class="card-body">
+                    <h5>Lojas Parceiras</h5>
+                    <p>🏪 <strong>Loja Exemplo</strong></p>
+                    <a href="#" class="contrast outline">Ver Produtos</a>
+                    <small class="text-muted d-block mt-1">Mais opções em breve!</small>
+                </div>
+            </div>
+        </div>
+        <h3>🛍️ Compre Agora</h3>
+        <div class="grid mt-2 fade-in">
+
+            <!-- BLOCO DE LOJAS PARCEIRAS -->
+            <section id="onde-me-encontrar" style="background: #f9f9f9; padding: 20px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); max-width: 1200px; margin: 20px auto;">
+                <h2 style="font-size: 1.5rem; color: #333; margin-bottom: 12px;">🛍️ Onde me encontrar</h2>
+                <ul style="list-style: none; padding: 0; font-size: 1rem; color: #555;">
+                    <li style="margin-bottom: 8px;">
+                        <strong>Loja física:</strong> Rua Exemplo, 123, Cidade/Estado
+                    </li>
+                    <li style="margin-bottom: 8px;">
+                        <strong>Instagram Shop:</strong>
+                        <a href="https://instagram.com/sualoja" target="_blank" style="color: #1DA1F2; text-decoration: none;">instagram.com/sualoja</a>
+                    </li>
+                    <li style="margin-bottom: 8px;">
+                        <strong>Shopee:</strong>
+                        <a href="https://shopee.com/sualoja" target="_blank" style="color: #FF5722; text-decoration: none;">shopee.com/sualoja</a>
+                    </li>
+                    <li>
+                        <strong>Site pessoal:</strong>
+                        <a href="https://www.sualoja.com" target="_blank" style="color: #4CAF50; text-decoration: none;">www.sualoja.com</a>
+                    </li>
+                </ul>
+                <small class="text-muted d-block mt-1">Mais opções em breve!</small>
+            </section>
+
+            <!-- Botão de salvar look -->
+            <div class="save-section mt-2">
+                <button class="contrast" onclick="salvarLook()" aria-label="Salvar look no histórico">💾 Salvar Look</button>
+            </div>
+        </div>
+    }
+
+    <style>
+<<<<<<< HEAD
+
+
+
+        .image-zoom-container {
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+            touch-action: none; /* impede scroll durante o zoom */
+        }
+
+        .image-zoom-container img {
+            transition: transform 0.3s ease;
+            width: 100%;
+            height: auto;
+        }
+
+
+        .nav-links.active {
+            z-index: 1000; /* acima */
+        }
+
+=======
+>>>>>>> ee72b37dda9197ebaf0aac42e9fc10ea8c15137d
+        .product-card:hover {
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+<<<<<<< HEAD
+         
+=======
+            .product-card:hover a {
+                background: #0056b3;
+                transition: background 0.3s ease;
+            }
+>>>>>>> ee72b37dda9197ebaf0aac42e9fc10ea8c15137d
+
+        /* upload card style (preserved) */
+        .upload-section {
+            background: #f9f9f9;
+            padding: 1rem;
+            border-radius: 10px;
+            border: 1px solid #ddd;
+        }
+
+            .upload-section:hover {
+                background: #fff;
+                transition: background 0.3s ease;
+            }
+    </style>
+
+    @section Scripts {
+        <partial name="_ValidationScriptsPartial" />
+        <script>
+            // Bloqueio de clique duplo + UX melhorada + Feedback Progressivo
+            const form = document.getElementById('promptForm');
+            const submitBtn = document.getElementById('submitButton');
+            const originalText = submitBtn ? submitBtn.textContent : '';
+            let loadingTimer = null;
+            let messageTimer = null;
+
+            if (form && submitBtn) {
+                form.addEventListener('submit', function (e) {
+                    if (!form.checkValidity()) {
+                        e.preventDefault();
+                        return;
+                    }
+
+                    // UX: Botão fica desabilitado com feedback visual
+                    submitBtn.disabled = true;
+                    submitBtn.textContent = '⏳ Gerando...';
+                    submitBtn.classList.add('loading');
+
+                    // NOVO: Feedback progressivo durante loading
+                    startProgressiveFeedback();
+                });
+
+                // Reset do botão após carregamento
+                window.addEventListener('load', function() {
+                    clearProgressiveFeedback();
+                    if (submitBtn && submitBtn.disabled) {
+                        setTimeout(() => {
+                            submitBtn.disabled = false;
+                            submitBtn.textContent = originalText;
+                            submitBtn.classList.remove('loading');
+                        }, 1000);
+                    }
+                });
+            }
+
+            // NOVO: Sistema de feedback progressivo
+            function startProgressiveFeedback() {
+                const loadingContainer = document.querySelector('.loading-container p');
+
+                if (!loadingContainer) return;
+
+                // Após 5 segundos: Primeira mensagem
+                messageTimer = setTimeout(() => {
+                    loadingContainer.innerHTML = '<strong>Ainda processando...</strong><br><small>A IA está criando sua imagem personalizada</small>';
+                }, 5000);
+
+                // Após 10 segundos: Mensagem de paciência
+                loadingTimer = setTimeout(() => {
+                    loadingContainer.innerHTML = '<strong>Quase lá!</strong><br><small>Redes lentas podem demorar até 20 segundos</small>';
+                }, 10000);
+
+                // Após 15 segundos: Aviso de timeout próximo
+                setTimeout(() => {
+                    if (loadingContainer.isConnected) {
+                        loadingContainer.innerHTML = '<strong>Finalizando...</strong><br><small>Aguarde mais alguns segundos</small>';
+                    }
+                }, 15000);
+            }
+
+            function clearProgressiveFeedback() {
+                if (loadingTimer) clearTimeout(loadingTimer);
+                if (messageTimer) clearTimeout(messageTimer);
+            }
+
+            // Animação suave para resultados
+            document.querySelectorAll('.fade-in').forEach(el => {
+                el.style.opacity = '0';
+                el.style.transform = 'translateY(20px)';
+
+                setTimeout(() => {
+                    el.style.transition = 'all 0.5s ease';
+                    el.style.opacity = '1';
+                    el.style.transform = 'translateY(0)';
+                }, 100);
+            });
+
+            // Image zoom (preserved)
+<<<<<<< HEAD
+                        document.querySelectorAll('.image-zoom-container').forEach(container => {
+              const img = container.querySelector('img');
+
+              // Mouse (desktop)
+              container.addEventListener('mousemove', e => {
+                const rect = container.getBoundingClientRect();
+                const x = ((e.clientX - rect.left) / rect.width) * 100;
+                const y = ((e.clientY - rect.top) / rect.height) * 100;
+                img.classList.add("zoomed");
+                img.style.transformOrigin = `${x}% ${y}%`;
+                img.style.transform = "scale(3)";
+              });
+
+              container.addEventListener('mouseleave', () => {
+                img.classList.remove("zoomed");
+                img.style.transform = "scale(1)";
+              });
+
+              // Touch (mobile)
+              container.addEventListener('touchstart', e => {
+                img.style.transformOrigin = "center center";
+                img.style.transform = "scale(2.5)";
+              });
+
+              container.addEventListener('touchend', () => {
+                img.style.transform = "scale(1)";
+              });
+            });
+                        document.addEventListener('DOMContentLoaded', () => {
+              document.querySelectorAll('.image-zoom-container').forEach(container => {
+                const img = container.querySelector('img');
+                let zoomed = false; // controla o estado do zoom
+
+                // 🔹 Desktop: mantém o efeito de mousemove
+                container.addEventListener('mousemove', e => {
+                  if (window.innerWidth <= 768) return; // ignora mobile
+                  const rect = container.getBoundingClientRect();
+                  const x = ((e.clientX - rect.left) / rect.width) * 100;
+                  const y = ((e.clientY - rect.top) / rect.height) * 100;
+                  img.style.transformOrigin = `${x}% ${y}%`;
+                  img.style.transform = "scale(2.5)";
+                });
+
+                container.addEventListener('mouseleave', () => {
+                  img.style.transform = "scale(1)";
+                });
+
+                // 🔹 Mobile: usa toque duplo (double tap) para alternar zoom
+                let lastTap = 0;
+                container.addEventListener('touchstart', e => {
+                  const now = Date.now();
+                  const delta = now - lastTap;
+
+                  if (delta < 300 && delta > 0) {
+                    zoomed = !zoomed;
+                    if (zoomed) {
+                      img.style.transformOrigin = "center center";
+                      img.style.transform = "scale(2.2)";
+                    } else {
+                      img.style.transform = "scale(1)";
+                    }
+                    e.preventDefault(); // evita zoom nativo do navegador
+                  }
+
+                  lastTap = now;
+                });
+
+                // Evita o navegador tratar o toque como rolagem
+                container.style.touchAction = 'none';
+              });
+            });
+
+
+=======
+            document.querySelectorAll('.image-zoom-container').forEach(container => {
+                const img = container.querySelector('img');
+
+                container.addEventListener('mousemove', e => {
+                    const rect = container.getBoundingClientRect();
+                    const x = ((e.clientX - rect.left) / rect.width) * 100;
+                    const y = ((e.clientY - rect.top) / rect.height) * 100;
+
+                    img.classList.add("zoomed");
+                    img.style.transformOrigin = `${x}% ${y}%`;
+                    img.style.transform = "scale(3)"; // zoom forte
+                });
+
+                container.addEventListener('mouseleave', () => {
+                    img.classList.remove("zoomed");
+                    img.style.transformOrigin = "center center";
+                    img.style.transform = "scale(1)";
+                });
+            });
+>>>>>>> ee72b37dda9197ebaf0aac42e9fc10ea8c15137d
+        </script>
+    }
+</div>
