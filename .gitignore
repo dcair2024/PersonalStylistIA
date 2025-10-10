@@ -40,3 +40,6 @@ wwwroot/lib/
 *.tmp
 *.log
 *.bak
+*.db
+*.db-shm
+*.db-wal
