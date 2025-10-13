@@ -15,11 +15,13 @@ builder.Services.AddDefaultIdentity<ApplicationUser>(options =>
 {
     options.SignIn.RequireConfirmedAccount = false;
     options.Password.RequireDigit = false;
-    options.Password.RequiredLength = 6;
-    options.Password.RequireNonAlphanumeric = false;
     options.Password.RequireUppercase = false;
+    options.Password.RequireNonAlphanumeric = false;
+    options.Password.RequiredLength = 6;
 })
 .AddEntityFrameworkStores<ApplicationDbContext>();
+
+
 
 if (builder.Environment.IsProduction())
 {
@@ -29,7 +31,14 @@ if (builder.Environment.IsProduction())
 }
 
 // Add services to the container.
+
 builder.Services.AddRazorPages();
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(30);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
 
 builder.Services.AddHttpClient<IOpenAIImageService, OpenAIImageService>((sp, client) =>
 {
@@ -53,14 +62,13 @@ else
 }
 
 app.UseHttpsRedirection();
-app.UseStaticFiles(); // ← ADICIONADO
+app.UseStaticFiles(); 
 app.UseRouting();
-app.UseAuthentication(); // ← ADICIONADO (CRÍTICO)
+app.UseAuthentication(); 
 app.UseAuthorization();
-
-
 app.MapRazorPages()
    .WithStaticAssets();
+app.UseSession();
 app.MapRazorPages();
 
 app.Run();

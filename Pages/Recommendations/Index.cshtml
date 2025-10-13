@@ -1,0 +1,106 @@
+﻿@page
+@model PersonalStylistIA.Pages.Recommendations.IndexModel
+@{
+    ViewData["Title"] = "Recomendações de Estilo IA";
+}
+
+<div class="content-expanded">
+    <header class="recommendation-header">
+        <h1>📝 Recomendações de Estilo IA</h1>
+        <p>Descreva a ocasião e receba sugestões personalizadas</p>
+    </header>
+
+    <!-- FORMULÁRIO DE INPUT -->
+    <form method="post" asp-page-handler="Generate">
+        <div class="input-section">
+            <textarea asp-for="UserInput"
+                      placeholder="Ex: Look para formatura noturna, roupa casual para date no parque..."
+                      maxlength="500"
+                      rows="4"></textarea>
+            <span asp-validation-for="UserInput" class="text-danger"></span>
+
+            <div class="input-options">
+                <select>
+                    <option>Estilo: Casual</option>
+                    <option>Estilo: Formal</option>
+                    <option>Estilo: Esportivo</option>
+                </select>
+                <button type="submit" class="generate-btn" disabled="@Model.IsLoading">
+                    @if (Model.IsLoading)
+                    {
+                        <span>⏳ Gerando...</span>
+                    }
+                    else
+                    {
+                        <span>✨ Gerar Recomendações</span>
+                    }
+                </button>
+            </div>
+        </div>
+    </form>
+
+    <!-- ESTADOS DINÂMICOS -->
+    <div class="results-container">
+        @if (Model.IsLoading)
+        {
+            <!-- LOADING STATE -->
+            <div class="loading-state">
+                <div class="spinner"></div>
+                <p>Analisando seu estilo...</p>
+            </div>
+        }
+        else if (Model.HasError)
+        {
+            <!-- ERROR STATE -->
+            <div class="error-state">
+                <div class="error-icon">⚠️</div>
+                <p>Erro interno na geração de recomendação.</p>
+                <button class="retry-btn" onclick="location.reload()">Tentar novamente</button>
+            </div>
+        }
+        else if (!string.IsNullOrEmpty(Model.RecommendationResult))
+        {
+            <!-- RESULTS STATE -->
+            <div class="recommendation-card">
+                <div class="card-header">
+                    <span class="occasion-tag">🎓 Recomendação</span>
+                    <button class="save-btn">💾</button>
+                </div>
+                <div class="recommendation-content">
+                    <p>@Model.RecommendationResult</p>
+                </div>
+                <div class="card-footer">
+                    <small>Gerado agora</small>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+@section Styles {
+    <style>
+        /* ESTILOS ESPECÍFICOS DO FT-017 */
+        .recommendation-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .input-section textarea {
+            width: 100%;
+            margin-bottom: 1rem;
+        }
+
+        .input-options {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .generate-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        /* Estilos dos estados serão refinados no CSS final */
+    </style>
+}

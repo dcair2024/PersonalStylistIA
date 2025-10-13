@@ -64,7 +64,7 @@ namespace PersonalStylistIA.Pages.Account
 
             // 3. Tenta autenticar o usuário
             // Usamos o UserName que o Identity espera para PasswordSignInAsync
-            var result = await _signInManager.PasswordSignInAsync(user.UserName, Input.Password, isPersistent: false, lockoutOnFailure: false);
+            var result = await _signInManager.PasswordSignInAsync(user.UserName, Input.Password, isPersistent: true, lockoutOnFailure: false);
 
             if (result.Succeeded)
             {

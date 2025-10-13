@@ -17,13 +17,15 @@ namespace PersonalStylistIA.Pages.Account
             _logger = logger;
         }
 
-        public async Task<IActionResult> OnGetAsync()
+        public async Task<IActionResult> OnPostAsync()
         {
             await _signInManager.SignOutAsync();
-            _logger.LogInformation("👋 Usuário fez logout com sucesso.");
-
-            // 🔁 Redireciona para a Home (Carol usa isso pra atualizar navbar)
+            HttpContext.Session?.Clear(); // ✅ usa null-conditional
+            _logger.LogInformation("🟢 Sessão finalizada com sucesso.");
             return RedirectToPage("/Index");
+            _logger.LogInformation("🧹 Usuário desconectado com sucesso.");
+            return RedirectToPage("/Index");     // ✅ redireciona pra home
         }
     }
+    
 }

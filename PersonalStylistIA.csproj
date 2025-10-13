@@ -16,9 +16,13 @@
 
   <ItemGroup>
     <Compile Remove="NovaPasta1\**" />
+    <Compile Remove="wwwroot\NovaPasta\**" />
     <Content Remove="NovaPasta1\**" />
+    <Content Remove="wwwroot\NovaPasta\**" />
     <EmbeddedResource Remove="NovaPasta1\**" />
+    <EmbeddedResource Remove="wwwroot\NovaPasta\**" />
     <None Remove="NovaPasta1\**" />
+    <None Remove="wwwroot\NovaPasta\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -42,10 +46,6 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="wwwroot\NovaPasta\" />
   </ItemGroup>
 
 </Project>
