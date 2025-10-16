@@ -4,6 +4,7 @@
 
 <!DOCTYPE html>
 <html lang="pt-BR">
+ @await RenderSectionAsync("Styles", required: false)
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -198,13 +199,20 @@
         <div class="navbar">
             <div class="brand">Personal Stylist IA</div>
 
+            
             <div class="nav-links" role="navigation">
                 @if (User.Identity?.IsAuthenticated == true)
                 {
                     var user = await UserManager.GetUserAsync(User);
                     var nomeExibicao = user?.NomeCompleto ?? User.Identity?.Name ?? "Usuário";
                     var primeiroNome = nomeExibicao?.Split(' ')[0] ?? nomeExibicao;
+
                     <span class="muted">Olá, @primeiroNome!</span>
+
+                    <!-- ADICIONAR ESTE LINK -->
+                    <a asp-page="/Recommendations/Index" class="nav-link">🎨 Recomendações IA</a>
+                    <a asp-page="/Prompt" class="nav-link">🖼️ Gerar Imagens</a>
+
                     <form method="post" asp-page="/Account/Logout" style="display:inline;">
                         <button type="submit" class="logout">Logout</button>
                     </form>

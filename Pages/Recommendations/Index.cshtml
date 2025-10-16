@@ -2,29 +2,34 @@
 @model PersonalStylistIA.Pages.Recommendations.IndexModel
 @{
     ViewData["Title"] = "Recomendações de Estilo IA";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
 }
 
-<div class="content-expanded">
+<!-- Importa o CSS global da página -->
+<link rel="stylesheet" href="~/css/recommendations.css" asp-append-version="true" />
+
+<div class="recommendations-container">
     <header class="recommendation-header">
         <h1>📝 Recomendações de Estilo IA</h1>
         <p>Descreva a ocasião e receba sugestões personalizadas</p>
     </header>
 
     <!-- FORMULÁRIO DE INPUT -->
-    <form method="post" asp-page-handler="Generate">
+    <form method="post" class="recommendation-form">
         <div class="input-section">
-            <textarea asp-for="UserInput"
+            <textarea asp-for="UserPrompt"
                       placeholder="Ex: Look para formatura noturna, roupa casual para date no parque..."
                       maxlength="500"
                       rows="4"></textarea>
-            <span asp-validation-for="UserInput" class="text-danger"></span>
+            <span asp-validation-for="UserPrompt" class="text-danger"></span>
 
             <div class="input-options">
-                <select>
-                    <option>Estilo: Casual</option>
-                    <option>Estilo: Formal</option>
-                    <option>Estilo: Esportivo</option>
+                <select name="EstiloSelecionado">
+                    <option value="Casual">Estilo: Casual</option>
+                    <option value="Formal">Estilo: Formal</option>
+                    <option value="Esportivo">Estilo: Esportivo</option>
                 </select>
+
                 <button type="submit" class="generate-btn" disabled="@Model.IsLoading">
                     @if (Model.IsLoading)
                     {
@@ -43,7 +48,6 @@
     <div class="results-container">
         @if (Model.IsLoading)
         {
-            <!-- LOADING STATE -->
             <div class="loading-state">
                 <div class="spinner"></div>
                 <p>Analisando seu estilo...</p>
@@ -51,56 +55,74 @@
         }
         else if (Model.HasError)
         {
-            <!-- ERROR STATE -->
             <div class="error-state">
                 <div class="error-icon">⚠️</div>
-                <p>Erro interno na geração de recomendação.</p>
+                <p>@Model.ErrorMessage</p>
                 <button class="retry-btn" onclick="location.reload()">Tentar novamente</button>
             </div>
         }
-        else if (!string.IsNullOrEmpty(Model.RecommendationResult))
+        else if (!string.IsNullOrEmpty(Model.Recommendation))
         {
-            <!-- RESULTS STATE -->
-            <div class="recommendation-card">
+            <div class="recommendation-card modern-layout">
                 <div class="card-header">
-                    <span class="occasion-tag">🎓 Recomendação</span>
-                    <button class="save-btn">💾</button>
+                    <div class="header-badge">
+                        <span class="badge-icon">🎯</span>
+                        <span class="badge-text">Recomendação Personalizada</span>
+                    </div>
+                    <div class="card-actions">
+                        <button type="button" class="action-btn copy-btn" title="Copiar recomendação" onclick="copyRecommendation()">
+                            <span class="btn-icon">📋</span>
+                            <span class="btn-text">Copiar</span>
+                        </button>
+                        <button type="button" class="action-btn save-btn" title="Salvar nos favoritos">
+                            <span class="btn-icon">💾</span>
+                            <span class="btn-text">Salvar</span>
+                        </button>
+                    </div>
                 </div>
+
                 <div class="recommendation-content">
-                    <p>@Model.RecommendationResult</p>
+                    <div class="content-header">
+                        <h3>✨ Seu Look Ideal</h3>
+                        <div class="divider-small"></div>
+                    </div>
+
+                    <div class="recommendation-text">
+                        <div class="simple-recommendation">
+                            <p>@Model.Recommendation</p>
+                        </div>
+                    </div>
                 </div>
+
                 <div class="card-footer">
-                    <small>Gerado agora</small>
+                    <div class="footer-info">
+                        <span class="info-icon">🕒</span>
+                        <span class="info-text">Gerado agora</span>
+                    </div>
+                    <div class="footer-actions">
+                        <a href="/Recommendations" class="outline-btn">
+                            <span class="btn-icon">🔄</span>
+                            <span class="btn-text">Nova Recomendação</span>
+                        </a>
+                    </div>
                 </div>
             </div>
         }
     </div>
 </div>
 
-@section Styles {
-    <style>
-        /* ESTILOS ESPECÍFICOS DO FT-017 */
-        .recommendation-header {
-            text-align: center;
-            margin-bottom: 2rem;
-        }
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
 
-        .input-section textarea {
-            width: 100%;
-            margin-bottom: 1rem;
+    <script>
+        // Copiar recomendação
+        function copyRecommendation() {
+            const text = document.querySelector('.simple-recommendation')?.innerText;
+            if (text) {
+                navigator.clipboard.writeText(text)
+                    .then(() => alert('Recomendação copiada! 📋'))
+                    .catch(() => alert('Erro ao copiar texto.'));
+            }
         }
-
-        .input-options {
-            display: flex;
-            gap: 1rem;
-            align-items: center;
-        }
-
-        .generate-btn:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-        }
-
-        /* Estilos dos estados serão refinados no CSS final */
-    </style>
+    </script>
 }

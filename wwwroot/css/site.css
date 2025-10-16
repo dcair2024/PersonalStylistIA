@@ -306,5 +306,278 @@ form button[type="submit"] {
     padding: 1.5rem;
 }
 
+/* ======================== */
+/* DESIGN MODERNO FT-017 */
+/* ======================== */
+
+.recommendation-card.modern-layout {
+    background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+    margin-top: 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+    .recommendation-card.modern-layout::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, var(--primary-blue), var(--accent-orange));
+    }
+
+/* HEADER MODERNO */
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.header-badge {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(29, 74, 137, 0.1);
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    border: 1px solid rgba(29, 74, 137, 0.2);
+}
+
+.badge-icon {
+    font-size: 1.1rem;
+}
+
+.badge-text {
+    font-weight: 600;
+    color: var(--primary-blue);
+    font-size: 0.9rem;
+}
+
+.card-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.action-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: white;
+    border: 1px solid #e2e8f0;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+
+    .action-btn:hover {
+        background: #f8fafc;
+        border-color: var(--primary-blue);
+        transform: translateY(-1px);
+    }
+
+.btn-icon {
+    font-size: 1rem;
+}
+
+.btn-text {
+    font-weight: 500;
+}
+
+/* CONTEÚDO MODERNO */
+.content-header {
+    margin-bottom: 1.5rem;
+}
+
+    .content-header h3 {
+        color: var(--primary-blue);
+        font-family: var(--font-heading);
+        margin-bottom: 0.5rem;
+        font-size: 1.4rem;
+    }
+
+.divider-small {
+    height: 2px;
+    width: 60px;
+    background: linear-gradient(90deg, var(--primary-blue), var(--accent-orange));
+    border-radius: 2px;
+}
+
+/* TEXTO DA RECOMENDAÇÃO */
+.recommendation-text {
+    line-height: 1.7;
+}
+
+.look-section {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.look-title {
+    color: var(--primary-blue);
+    font-family: var(--font-heading);
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.outfit-item {
+    display: flex;
+    margin-bottom: 0.75rem;
+    padding: 0.75rem;
+    background: #f8fafc;
+    border-radius: 8px;
+    border-left: 3px solid var(--accent-orange);
+}
+
+.item-category {
+    font-weight: 600;
+    color: var(--primary-blue);
+    min-width: 120px;
+    font-size: 0.95rem;
+}
+
+.item-description {
+    color: var(--muted-1);
+    flex: 1;
+    font-size: 0.95rem;
+}
+
+.general-text {
+    color: var(--muted-1);
+    margin-bottom: 1rem;
+    line-height: 1.6;
+    font-size: 1rem;
+}
+
+/* FOOTER MODERNO */
+.card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #e2e8f0;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.footer-info {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.info-icon {
+    font-size: 1rem;
+}
+
+.info-text {
+    color: var(--muted-2);
+    font-size: 0.9rem;
+}
+
+.footer-actions {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.outline-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: transparent;
+    border: 1px solid var(--primary-blue);
+    color: var(--primary-blue);
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+    .outline-btn:hover {
+        background: var(--primary-blue);
+        color: white;
+        transform: translateY(-1px);
+    }
+
+/* RESPONSIVIDADE MELHORADA */
+@media (max-width: 768px) {
+    .recommendation-card.modern-layout {
+        padding: 1.5rem;
+        margin: 1rem 0;
+    }
+
+    .card-header {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .card-actions {
+        justify-content: flex-start;
+    }
+
+    .outfit-item {
+        flex-direction: column;
+        gap: 0.25rem;
+    }
+
+    .item-category {
+        min-width: auto;
+    }
+
+    .card-footer {
+        flex-direction: column;
+        align-items: stretch;
+        text-align: center;
+    }
+
+    .footer-actions {
+        justify-content: center;
+    }
+}
+
+/* ANIMAÇÕES MODERNAS */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.recommendation-card.modern-layout {
+    animation: fadeInUp 0.5s ease-out;
+}
+
+.outfit-item {
+    animation: fadeInUp 0.5s ease-out 0.1s both;
+}
+
+/* EFEITOS DE FOCO */
+.action-btn:focus,
+.outline-btn:focus {
+    outline: 2px solid var(--primary-blue);
+    outline-offset: 2px;
+}
+
 
 

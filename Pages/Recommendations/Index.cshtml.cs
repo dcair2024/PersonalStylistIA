@@ -1,51 +1,82 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Extensions.Logging;
+using PersonalStylistIA.Services;
 
 namespace PersonalStylistIA.Pages.Recommendations
 {
     public class IndexModel : PageModel
     {
-        [BindProperty]
-        public string UserInput { get; set; } = string.Empty;
+        private readonly IOpenAITextService _openAITextService;
+        private readonly ILogger<IndexModel> _logger;
 
-        public string RecommendationResult { get; set; } = string.Empty;
-        public bool IsLoading { get; set; }
-        public bool HasError { get; set; }
+        public IndexModel(IOpenAITextService openAITextService, ILogger<IndexModel> logger)
+        {
+            _openAITextService = openAITextService;
+            _logger = logger;
+        }
+
+        // Bind do textarea do form
+        [BindProperty]
+        public string? UserPrompt { get; set; }
+
+        // Estado de loading para o botão / UI
+        public bool IsLoading { get; set; } = false;
+
+        // Estado de erro (para exibir banner)
+        public bool HasError { get; set; } = false;
+
+        // Mensagem de erro detalhada (amigável)
+        public string? ErrorMessage { get; set; }
+
+        // Resultado da recomendação
+        public string? Recommendation { get; set; }
 
         public void OnGet()
         {
-            // Página carregada normalmente
+            // Inicializa estados
+            IsLoading = false;
+            HasError = false;
+            ErrorMessage = null;
+            Recommendation = null;
         }
 
-        public async Task<IActionResult> OnPostGenerateAsync()
+        public async Task<IActionResult> OnPostAsync()
         {
-            if (string.IsNullOrWhiteSpace(UserInput))
+            // Resetar estados
+            IsLoading = false;
+            HasError = false;
+            ErrorMessage = null;
+            Recommendation = null;
+
+            if (string.IsNullOrWhiteSpace(UserPrompt))
             {
-                ModelState.AddModelError("", "Por favor, descreva a ocasião desejada.");
+                ModelState.AddModelError(nameof(UserPrompt), "Descreva o que você precisa.");
                 return Page();
             }
 
-            IsLoading = true;
-            HasError = false;
-
             try
             {
-                // TODO: Davi - Integração com API OpenAI
-                // RecommendationResult = await _openAIService.GetRecommendation(UserInput);
+                IsLoading = true;
 
-                // Mock temporário para testes
-                RecommendationResult = "Sugestão: Vestido midi de seda azul-marinho, salto nude e brincos prateados discretos. Ideal para um jantar elegante à noite.";
+                // Chama o serviço da OpenAI
+                var result = await _openAITextService.GenerateTextRecommendation(UserPrompt.Trim());
 
+                Recommendation = result?.Trim();
                 IsLoading = false;
+
+                return Page();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                _logger.LogError(ex, "Erro ao gerar recomendação IA para prompt: {Prompt}", UserPrompt);
                 HasError = true;
+                ErrorMessage = "Não foi possível gerar a recomendação no momento. Tente novamente mais tarde.";
                 IsLoading = false;
-                ModelState.AddModelError("", "Erro interno na geração de recomendação.");
+                return Page();
             }
-
-            return Page();
         }
     }
 }

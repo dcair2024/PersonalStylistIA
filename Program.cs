@@ -1,9 +1,10 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using PersonalStylistIA.Data;
 using PersonalStylistIA.Models;
-using Microsoft.Extensions.DependencyInjection;
+using PersonalStylistIA.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -48,6 +49,10 @@ builder.Services.AddHttpClient<IOpenAIImageService, OpenAIImageService>((sp, cli
     client.DefaultRequestHeaders.Authorization =
         new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", apiKey);
 });
+builder.Services.AddHttpClient<IOpenAITextService, OpenAITextService>();
+
+
+
 
 var app = builder.Build();
 
