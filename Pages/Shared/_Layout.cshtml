@@ -12,30 +12,24 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@@picocss/pico@1/css/pico.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
 
-    <style>
-        :root {
-            --primary-blue: #1D4A89;
-            --accent-orange: #FF6600;
-            --error-red: #ef4444; /* Vindo da versão ee72b37... */
-            --muted-1: #4A5568; /* Vindo da versão ee72b37... */
-            --muted-2: #6B7280; /* Vindo da versão ee72b37... */
-            --font-heading: 'Montserrat', sans-serif;
-        }
+    <!-- ✅ Corrigido: renderiza CSS das páginas que tiverem @@section Styles -->
+    @await RenderSectionAsync("Styles", required: false)
+    @RenderSection("HeadExtras", required: false)
 
-        /* Body & page background */ /* Vindo da versão ee72b37... */
+    <style>
+
         body {
             font-family: 'Open Sans', sans-serif;
             background-color: #F9FAFB;
             margin: 0;
-            padding: 20px; /* Mantendo seu padding */
-            -webkit-font-smoothing: antialiased; /* Vindo da versão ee72b37... */
-            -moz-osx-font-smoothing: grayscale; /* Vindo da versão ee72b37... */
+            padding: 20px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
-        /* Header / Navbar */ /* Vindo da versão ee72b37... */
         header {
             background: white;
-            box-shadow: 0 2px 6px rgba(11,22,38,0.06); /* Versão ee72b37... tem um box-shadow melhor */
+            box-shadow: 0 2px 6px rgba(11,22,38,0.06);
             padding: 1rem 0;
         }
 
@@ -46,47 +40,45 @@
             gap: 1rem;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 0 1rem; /* Vindo da versão ee72b37... */
+            padding: 0 1rem;
         }
 
         .brand {
             font-family: var(--font-heading);
             color: var(--primary-blue);
             font-weight: 700;
-            font-size: 1.4rem; /* Unificando o tamanho da fonte */
+            font-size: 1.4rem;
         }
 
         .nav-links {
             display: flex;
-            gap: 1rem; /* Unificando o gap */
+            gap: 1rem;
             align-items: center;
         }
 
-            .nav-links a, .nav-links button {
-                color: var(--muted-1); /* Usando variável CSS da versão ee72b37... */
-                background: none;
-                border: none;
-                text-decoration: none;
-                font-weight: 500;
-                cursor: pointer;
-                padding: 0.25rem 0.4rem; /* Vindo da versão ee72b37... */
-            }
-
-                .nav-links a:hover, .nav-links button:hover {
-                    color: var(--primary-blue);
-                }
-
-        .logout {
-            color: var(--error-red); /* Usando variável CSS da versão ee72b37... */
+        .nav-links a, .nav-links button {
+            color: var(--muted-1);
+            background: none;
+            border: none;
+            text-decoration: none;
+            font-weight: 500;
+            cursor: pointer;
+            padding: 0.25rem 0.4rem;
         }
 
-        /* Início: Estilos adicionados ou melhorados pela versão ee72b37... */
+        .nav-links a:hover, .nav-links button:hover {
+            color: var(--primary-blue);
+        }
+
+        .logout {
+            color: var(--error-red);
+        }
+
         .nav-links span {
             color: var(--muted-2);
             margin-right: 1rem;
         }
 
-        /* Burger for small screens (kept but only visual; logic in site.js if needed) */
         .burger {
             display: none;
             font-size: 1.5rem;
@@ -94,14 +86,12 @@
             color: var(--muted-1);
         }
 
-        /* Main container: wrapper + two content types */
         main.page-wrapper {
             max-width: 1200px;
             margin: 2rem auto;
             padding: 0 1rem;
         }
 
-        /* Default card used by Login/Register (centralized card) */
         .content-card {
             max-width: 900px;
             margin: 0 auto;
@@ -111,7 +101,6 @@
             box-shadow: 0 8px 24px rgba(11,22,38,0.05);
         }
 
-        /* Expanded content (for Prompt): occupies up to 1200px */
         .content-expanded {
             width: 100%;
             max-width: 1200px;
@@ -122,7 +111,6 @@
             box-shadow: 0 8px 24px rgba(11,22,38,0.05);
         }
 
-        /* Common utilities */
         .muted {
             color: var(--muted-2);
         }
@@ -157,10 +145,8 @@
             background: #f9f9f9;
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
-        /* Fim: Estilos adicionados ou melhorados pela versão ee72b37... */
 
-        /* Responsive */
-        @@media (max-width: 900px) { /* Usando 900px como breakpoint (da ee72b37...) */
+        @@media (max-width: 900px) {
             .nav-links {
                 display: none;
                 flex-direction: column;
@@ -175,14 +161,14 @@
                 z-index: 100;
             }
 
-                .nav-links.show {
-                    display: flex;
-                }
+            .nav-links.show {
+                display: flex;
+            }
 
             .burger {
                 display: block;
             }
-            /* Adicionando estilos responsivos para os links (vindos da sua HEAD) */
+
             .nav-links a, .nav-links button {
                 padding: 0.5rem 0;
                 width: 100%;
@@ -190,9 +176,8 @@
             }
         }
     </style>
-
-    @RenderSection("HeadExtras", required: false)
 </head>
+
 <body>
     <header>
         <div class="navbar">
@@ -231,9 +216,10 @@
     </footer>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/zoom.js" asp-append-version="true"></script>
 
     @await RenderSectionAsync("Scripts", required: false)
+    
 
 </body>
 </html>

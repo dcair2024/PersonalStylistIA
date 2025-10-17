@@ -1,16 +1,20 @@
 ﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using PersonalStylistIA.Data;
 using PersonalStylistIA.Models;
-using Microsoft.Extensions.DependencyInjection;
+using PersonalStylistIA.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// =========================
+// 1️⃣ Banco de dados
+// =========================
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-// Add Identity (CORRIGIDO)
+// =========================
+// 2️⃣ Identity
+// =========================
 builder.Services.AddDefaultIdentity<ApplicationUser>(options =>
 {
     options.SignIn.RequireConfirmedAccount = false;
@@ -21,8 +25,9 @@ builder.Services.AddDefaultIdentity<ApplicationUser>(options =>
 })
 .AddEntityFrameworkStores<ApplicationDbContext>();
 
-
-
+// =========================
+// 3️⃣ Logging em produção
+// =========================
 if (builder.Environment.IsProduction())
 {
     builder.Logging.ClearProviders();
@@ -30,8 +35,9 @@ if (builder.Environment.IsProduction())
     builder.Logging.SetMinimumLevel(LogLevel.Warning);
 }
 
-// Add services to the container.
-
+// =========================
+// 4️⃣ Razor Pages e Sessão
+// =========================
 builder.Services.AddRazorPages();
 builder.Services.AddSession(options =>
 {
@@ -40,17 +46,52 @@ builder.Services.AddSession(options =>
     options.Cookie.IsEssential = true;
 });
 
+// =========================
+// 5️⃣ Serviços OpenAI
+// =========================
+
+// OpenAI Text Service
+builder.Services.AddHttpClient<IOpenAITextService, OpenAITextService>((sp, client) =>
+{
+    var config = sp.GetRequiredService<IConfiguration>();
+    var baseUrl = config["OpenAI:BaseUrl"];
+    var apiKey = config["OpenAI:ApiKey"];
+
+    if (string.IsNullOrWhiteSpace(baseUrl))
+        throw new ArgumentNullException("OpenAI:BaseUrl", "⚠️ Endpoint base da API OpenAI não configurado.");
+    if (string.IsNullOrWhiteSpace(apiKey))
+        throw new ArgumentNullException("OpenAI:ApiKey", "⚠️ Chave da API OpenAI não configurada.");
+
+    client.BaseAddress = new Uri(baseUrl);
+    client.DefaultRequestHeaders.Add("Authorization", $"Bearer {apiKey}");
+});
+
+// OpenAI Image Service
 builder.Services.AddHttpClient<IOpenAIImageService, OpenAIImageService>((sp, client) =>
 {
     var config = sp.GetRequiredService<IConfiguration>();
     var apiKey = config["OpenAI:ApiKey"];
-    client.BaseAddress = new Uri(config["OpenAI:BaseUrl"]);
-    client.DefaultRequestHeaders.Authorization =
-        new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", apiKey);
+    var baseUrl = config["OpenAI:BaseUrl"];
+
+    if (string.IsNullOrWhiteSpace(apiKey))
+        throw new ArgumentNullException("OpenAI:ApiKey", "⚠️ Chave da API OpenAI não configurada.");
+
+    if (string.IsNullOrWhiteSpace(baseUrl))
+        throw new ArgumentNullException("OpenAI:BaseUrl", "⚠️ O endpoint base da API OpenAI não foi configurado.");
+
+    client.BaseAddress = new Uri(baseUrl);
+    client.DefaultRequestHeaders.Add("Authorization", $"Bearer {apiKey}");
 });
 
+
+// =========================
+// 6️⃣ Build da aplicação
+// =========================
 var app = builder.Build();
 
+// =========================
+// 7️⃣ Middlewares
+// =========================
 if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
@@ -62,13 +103,15 @@ else
 }
 
 app.UseHttpsRedirection();
-app.UseStaticFiles(); 
+app.UseStaticFiles();
+
 app.UseRouting();
-app.UseAuthentication(); 
+
+app.UseAuthentication();
 app.UseAuthorization();
-app.MapRazorPages()
-   .WithStaticAssets();
+
 app.UseSession();
+
 app.MapRazorPages();
 
 app.Run();

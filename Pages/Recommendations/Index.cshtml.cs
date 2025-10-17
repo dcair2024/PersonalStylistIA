@@ -36,6 +36,7 @@ namespace PersonalStylistIA.Pages.Recommendations
                 // Mock temporário para testes
                 RecommendationResult = "Sugestão: Vestido midi de seda azul-marinho, salto nude e brincos prateados discretos. Ideal para um jantar elegante à noite.";
 
+                await Task.CompletedTask; // <- mantém método async válido sem warning
                 IsLoading = false;
             }
             catch (Exception)

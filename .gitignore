@@ -43,3 +43,45 @@ wwwroot/lib/
 *.db
 *.db-shm
 *.db-wal
+
+# 🧠 --- CONFIGURAÇÃO PADRÃO DO VISUAL STUDIO ---
+.vs/
+*.user
+*.aps
+*.pdb
+*.userosscache
+*.suo
+
+# 🧰 --- BUILD E DEPENDÊNCIAS (NuGet, Binários) ---
+[Bb]in/
+[Oo]bj/
+packages/
+*.nupkg
+*.db
+
+# 💾 --- BANCO DE DADOS (SQLite/Entity Framework Core) ---
+*.db
+
+# 🧩 --- CONFIGURAÇÕES DE SECRETS/PROJETO ---
+# 🔒 Evita que chaves da OpenAI ou credenciais sejam enviadas
+appsettings.json
+appsettings.Development.json
+appsettings.*.local.json
+.secrets/
+**/secrets.json
+
+# 🚧 --- NODE.JS / FRONTEND (se aplicável) ---
+node_modules/
+npm-debug.log*
+wwwroot/lib/
+
+# 🧪 --- VISUAL STUDIO CODE ---
+.vscode/
+
+# 🔒 --- ARQUIVOS TEMPORÁRIOS E LOGS ---
+*.tmp
+*.log
+*.bak
+*.db-shm
+*.db-wal
+

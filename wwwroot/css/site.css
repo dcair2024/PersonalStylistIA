@@ -38,10 +38,33 @@ body {
 :root {
     --primary-blue: #1D4A89;
     --accent-orange: #FF6600;
-    --background-light: #F5F5F5;
-    --font-body: 'Open Sans', sans-serif;
+    --error-red: #ef4444;
+    --muted-1: #4A5568;
+    --muted-2: #6B7280;
     --font-heading: 'Montserrat', sans-serif;
 }
+
+/* Exemplo de aplicação base para manter consistência */
+body {
+    font-family: 'Open Sans', sans-serif;
+    background-color: #F9FAFB;
+    color: var(--muted-1);
+}
+
+button, .contrast {
+    background: var(--primary-blue);
+    color: white;
+    border-radius: 8px;
+    padding: 0.5rem 1rem;
+    font-weight: 600;
+    border: none;
+    transition: background 0.3s ease;
+}
+
+    button:hover, .contrast:hover {
+        background: var(--accent-orange);
+    }
+
 
 /* Fonte global */
 body {
