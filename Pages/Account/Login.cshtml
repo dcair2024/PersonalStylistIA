@@ -1,4 +1,10 @@
 ﻿@page
+
+@{
+    Layout = "_Layout";
+}
+
+
 @model PersonalStylistIA.Pages.Account.LoginModel
 @{
     ViewData["Title"] = "Login - Personal Stylist IA";
@@ -36,12 +42,14 @@
             <div style="margin-bottom: 1.25rem; text-align:center;">
                 <a href="/RecuperarSenha">Esqueceu a senha?</a>
             </div>
+          
+            
 
-            <button type="submit" class="contrast" style="width:100%; background-color:var(--accent-orange); border-radius:6px; padding:0.9rem; font-weight:700;">Entrar</button>
+            <button type="submit" class="primary" style="width:100%; background-color:var(--accent-orange); border-radius:6px; padding:0.9rem; font-weight:700;">Entrar</button>
         </form>
 
         <div style="margin-top: 1rem; text-align:center;">
-            <a asp-page="/Account/Register">Não tem conta? Cadastre-se</a>
+            <a class="contrast outline" asp-page="/Account/Register">Cadastrar</a>
         </div>
         <div style="margin-top: 0.75rem; text-align:center;">
             <small style="color:var(--error-red);">* Campos obrigatórios</small>

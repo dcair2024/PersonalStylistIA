@@ -1,4 +1,6 @@
-﻿@using Microsoft.AspNetCore.Identity
+﻿
+
+@using Microsoft.AspNetCore.Identity
 @using PersonalStylistIA.Models
 @inject UserManager<ApplicationUser> UserManager
 
@@ -15,167 +17,10 @@
     <!-- ✅ Corrigido: renderiza CSS das páginas que tiverem @@section Styles -->
     @await RenderSectionAsync("Styles", required: false)
     @RenderSection("HeadExtras", required: false)
+    <link rel="stylesheet" href="~/css/theme.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/layout.css" asp-append-version="true" />
+    
 
-    <style>
-
-        body {
-            font-family: 'Open Sans', sans-serif;
-            background-color: #F9FAFB;
-            margin: 0;
-            padding: 20px;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-
-        header {
-            background: white;
-            box-shadow: 0 2px 6px rgba(11,22,38,0.06);
-            padding: 1rem 0;
-        }
-
-        .navbar {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 1rem;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 1rem;
-        }
-
-        .brand {
-            font-family: var(--font-heading);
-            color: var(--primary-blue);
-            font-weight: 700;
-            font-size: 1.4rem;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 1rem;
-            align-items: center;
-        }
-
-        .nav-links a, .nav-links button {
-            color: var(--muted-1);
-            background: none;
-            border: none;
-            text-decoration: none;
-            font-weight: 500;
-            cursor: pointer;
-            padding: 0.25rem 0.4rem;
-        }
-
-        .nav-links a:hover, .nav-links button:hover {
-            color: var(--primary-blue);
-        }
-
-        .logout {
-            color: var(--error-red);
-        }
-
-        .nav-links span {
-            color: var(--muted-2);
-            margin-right: 1rem;
-        }
-
-        .burger {
-            display: none;
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: var(--muted-1);
-        }
-
-        main.page-wrapper {
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 1rem;
-        }
-
-        .content-card {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 1.5rem;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 8px 24px rgba(11,22,38,0.05);
-        }
-
-        .content-expanded {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 1.25rem;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 8px 24px rgba(11,22,38,0.05);
-        }
-
-        .muted {
-            color: var(--muted-2);
-        }
-
-        .accent {
-            color: var(--accent-orange);
-        }
-
-        .divider {
-            height: 3px;
-            width: 60px;
-            background: var(--primary-blue);
-            border-radius: 2px;
-            margin: 0.75rem auto;
-        }
-
-        footer {
-            text-align: center;
-            padding: 1.25rem;
-            color: var(--muted-2);
-            margin-top: 1.5rem;
-            font-size: 0.95rem;
-        }
-
-        .save-section, #onde-me-encontrar {
-            margin-top: 2rem;
-        }
-
-        #onde-me-encontrar {
-            padding: 1.5rem;
-            border-radius: 12px;
-            background: #f9f9f9;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        }
-
-        @@media (max-width: 900px) {
-            .nav-links {
-                display: none;
-                flex-direction: column;
-                gap: 0.5rem;
-                background: white;
-                position: absolute;
-                top: 100%;
-                right: 1rem;
-                padding: 1rem;
-                border-radius: 8px;
-                box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-                z-index: 100;
-            }
-
-            .nav-links.show {
-                display: flex;
-            }
-
-            .burger {
-                display: block;
-            }
-
-            .nav-links a, .nav-links button {
-                padding: 0.5rem 0;
-                width: 100%;
-                text-align: left;
-            }
-        }
-    </style>
 </head>
 
 <body>
@@ -184,23 +29,30 @@
             <div class="brand">Personal Stylist IA</div>
 
             <div class="nav-links" role="navigation">
-                @if (User.Identity?.IsAuthenticated == true)
-                {
-                    var user = await UserManager.GetUserAsync(User);
-                    var nomeExibicao = user?.NomeCompleto ?? User.Identity?.Name ?? "Usuário";
-                    var primeiroNome = nomeExibicao?.Split(' ')[0] ?? nomeExibicao;
-                    <span class="muted">Olá, @primeiroNome!</span>
-                    <form method="post" asp-page="/Account/Logout" style="display:inline;">
-                        <button type="submit" class="logout">Logout</button>
-                    </form>
-                }
-                else
-                {
-                    <a asp-page="/Index">Home</a>
-                    <a asp-page="/Privacy">Privacy</a>
-                    <a asp-page="/Account/Login">Login</a>
-                    <a asp-page="/Account/Register" class="contrast outline">Cadastrar</a>
-                }
+                <div class="nav-links" role="navigation">
+                    @if (User.Identity?.IsAuthenticated == true)
+                    {
+                        var user = await UserManager.GetUserAsync(User);
+                        var nomeExibicao = user?.NomeCompleto ?? User.Identity?.Name ?? "Usuário";
+                        var primeiroNome = nomeExibicao?.Split(' ')[0] ?? nomeExibicao;
+
+                        <span class="muted">Olá, @primeiroNome!</span>
+                        <a asp-page="/Index">🏠 Início</a>
+                        <a asp-page="/Recommendations/Index">💡 Recomendações</a>
+                        <form method="post" asp-page="/Account/Logout" style="display:inline;">
+                            <button type="submit" class="logout">Logout</button>
+                        </form>
+                    }
+                    else
+                    {
+                        <a asp-page="/Index">🏠 Início</a>
+                        <a asp-page="/Recommendations/Index">💡 Recomendações</a>
+                        <a asp-page="/Privacy">🔒 Privacy</a>
+                        <a asp-page="/Account/Login">👤 Login</a>
+                        <a asp-page="/Account/Register" class="contrast outline">📝 Cadastrar</a>
+                    }
+                </div>
+
             </div>
 
             <div class="burger" aria-hidden="true">☰</div>
@@ -213,13 +65,21 @@
 
     <footer>
         <p>&copy; 2025 - Personal Stylist IA - <a asp-page="/Privacy">Privacy</a></p>
+        <a asp-page="/Recommendations/Index">Recomendações</a>
+
     </footer>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="~/js/zoom.js" asp-append-version="true"></script>
 
     @await RenderSectionAsync("Scripts", required: false)
-    
+
+    <script>
+        document.querySelector('.burger').addEventListener('click', () => {
+            document.querySelector('.nav-links').classList.toggle('show');
+        });
+    </script>
+
 
 </body>
 </html>

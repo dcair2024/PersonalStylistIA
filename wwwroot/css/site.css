@@ -36,13 +36,11 @@ body {
 
 /* Variáveis globais */
 :root {
-    --primary-blue: #1D4A89;
-    --accent-orange: #FF6600;
-    --error-red: #ef4444;
-    --muted-1: #4A5568;
-    --muted-2: #6B7280;
-    --font-heading: 'Montserrat', sans-serif;
+    --primary: #0057ff;
+    --primary-hover: #ff9900;
+    --contrast: #ffffff;
 }
+
 
 /* Exemplo de aplicação base para manter consistência */
 body {
