@@ -1,0 +1,6 @@
+# pack-refs with: peeled fully-peeled sorted 
+9a43baea5c336ae285bb94b41a71c8982aceff13 refs/heads/backup/remove-appsettings
+57e45897564363d065806737faeb668dd0cc9aa8 refs/heads/dev
+34085047c8c60024ba64051a5ca265bfc86cb825 refs/heads/feature/ft-017-clean
+aae7163f6b4ef15fbebe1c0bacce3c028a12804c refs/heads/feature/ft-017-ui-design
+ae943d470e699a75861922ca9ae41587bb4c3968 refs/heads/main
