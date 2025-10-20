@@ -1,391 +1,238 @@
-﻿/* ============================
-   Bootstrap Overrides
-============================ */
-html {
-    font-size: 14px;
-}
+﻿/* =============================
+   🎨 Personal Stylist IA - Tema Global
+   Autor: Claudio (Front / CSS / Layout)
+   Data: 20/10/2025
+   ============================= */
 
-@media (min-width: 768px) {
-    html {
-        font-size: 16px;
-    }
-}
-
-.btn:focus,
-.btn:active:focus,
-.btn-link.nav-link:focus,
-.form-control:focus,
-.form-check-input:focus {
-    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
-
-html {
-    position: relative;
-    min-height: 100%;
-}
-
-body {
-    margin-bottom: 60px;
-}
-
-/* Importando fontes do Google */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;600&display=swap');
-
+/* =============================
+   🔹 VARIÁVEIS GLOBAIS
+   ============================= */
 :root {
-    --primary-blue: #0b132b;
-    --accent-orange: #0b132b; /* cor escura estilo do botão da imagem */
-    --muted-2: #777;
-    --error-red: #cc0000;
+    /* 🎨 Cores Principais */
+    --primary-blue: #1D4A89;
+    --accent-orange: #FF6600;
+    --error-red: #EF4444;
+    --muted-1: #4A5568;
+    --muted-2: #6B7280;
+    /* 🧱 Cores de Fundo e Bordas */
+    --bg-main: #F9FAFB;
+    --bg-card: #FFFFFF;
+    --border-color: #E2E8F0;
+    /* ✍️ Tipografia */
     --font-heading: 'Montserrat', sans-serif;
     --font-body: 'Open Sans', sans-serif;
+    /* 📏 Espaçamentos (tokens unificados) */
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+    /* ☁️ Sombras */
+    --shadow-sm: 0 2px 6px rgba(0,0,0,0.06);
+    --shadow-md: 0 8px 24px rgba(0,0,0,0.08);
+    --shadow-lg: 0 10px 32px rgba(0,0,0,0.12);
+    /* 🧭 Transições */
+    --transition-base: all 0.3s ease;
+    --transition-smooth: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-
-
-/* Exemplo de aplicação base para manter consistência */
+/* =============================
+   🔹 ESTRUTURA GLOBAL
+   ============================= */
 body {
-    font-family: 'Open Sans', sans-serif;
-    background-color: #F9FAFB;
+    font-family: var(--font-body);
+    background-color: var(--bg-main);
+    color: var(--muted-1);
+    margin: 0;
+    padding: var(--spacing-md);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* =============================
+   🔹 NAVBAR
+   ============================= */
+header {
+    background: var(--bg-card);
+    box-shadow: var(--shadow-sm);
+    padding: var(--spacing-md) 0;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
+}
+
+.brand {
+    font-family: var(--font-heading);
+    color: var(--primary-blue);
+    font-weight: 700;
+    font-size: 1.4rem;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+}
+
+    .nav-links a,
+    .nav-links button {
+        color: var(--muted-1);
+        text-decoration: none;
+        background: none;
+        border: none;
+        font-weight: 500;
+        cursor: pointer;
+        padding: var(--spacing-xs) var(--spacing-sm);
+        transition: var(--transition-base);
+    }
+
+        .nav-links a:hover,
+        .nav-links button:hover {
+            color: var(--primary-blue);
+        }
+
+.logout {
+    color: var(--error-red);
+}
+
+.burger {
+    display: none;
+    font-size: 1.5rem;
+    cursor: pointer;
     color: var(--muted-1);
 }
 
+/* =============================
+   🔹 CONTEÚDO PRINCIPAL
+   ============================= */
+main.page-wrapper {
+    max-width: 1200px;
+    margin: var(--spacing-xl) auto;
+    padding: 0 var(--spacing-md);
+}
+
+.content-card,
+.content-expanded {
+    background: var(--bg-card);
+    border-radius: 12px;
+    box-shadow: var(--shadow-md);
+    padding: var(--spacing-lg);
+}
+
+.content-card {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* =============================
+   🔹 BOTÕES GLOBAIS
+   ============================= */
 button,
-a[role="button"],
-input[type="submit"],
-.contrast,
-.generate-btn {
-    background-color: var(--accent-orange) !important;
-    color: #fff !important;
+a.button,
+input[type="submit"] {
+    background-color: var(--primary-blue);
+    color: white;
     border: none;
     border-radius: 8px;
+    padding: var(--spacing-sm) var(--spacing-lg);
     font-weight: 600;
-    padding: 0.9rem 1.5rem;
-    transition: all 0.25s ease;
-    box-shadow: 0 3px 8px rgba(11, 19, 43, 0.15);
-}
-
-    button:hover,
-    a[role="button"]:hover,
-    input[type="submit"]:hover,
-    .contrast:hover,
-    .generate-btn:hover {
-        background-color: #1c2541 !important;
-        transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(11, 19, 43, 0.3);
-    }
-
-
-
-/* Fonte global */
-body {
-    font-family: var(--font-body);
-    background-color: var(--background-light);
-    margin: 0;
-    padding: 0;
-}
-
-/* Headings */
-h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-heading);
-}
-
-/* ============================
-   Wireframe Custom Styles
-============================ */
-/* Hero Section */
-.hero-section {
-    text-align: center;
-    padding: 4rem 0;
-    background-color: var(--primary-blue);
-    color: white;
-    border-radius: 0.5rem;
-}
-
-/* CTA Section */
-.cta-section {
-    text-align: center;
-    padding: 3rem 0;
-    background-color: var(--primary-blue);
-    color: white;
-    border-radius: 0.5rem;
-}
-
-/* Botões CTA */
-button,
-a[role="button"],
-input[type="submit"] {
-    background-color: var(--accent-orange);
-    color: white;
-    border-radius: 0.5rem;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: var(--transition-smooth);
 }
 
     button:hover,
-    a[role="button"]:hover,
+    a.button:hover,
     input[type="submit"]:hover {
-        background-color: #CC5200;
-    }
-
-/* Cards */
-.card {
-    margin: 1rem 0;
-    padding: 1rem;
-    border-radius: 0.5rem;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-/* Grid */
-.grid {
-    display: grid;
-    gap: 1rem;
-}
-
-form .grid {
-    gap: 1rem;
-    margin-bottom: 1rem;
-}
-
-@media (max-width: 768px) {
-    form .grid {
-        grid-template-columns: 1fr;
-    }
-}
-
-/* Dropdown Styling */
-select {
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-    select:hover {
-        border-color: var(--primary-blue);
-    }
-
-    select:focus {
-        outline: none;
-        border-color: var(--primary-blue);
-        box-shadow: 0 0 0 3px rgba(29,74,137,0.1);
-    }
-
-/* Product Card Hover */
-.product-card:hover {
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    transition: all 0.3s ease;
-}
-
-    .product-card:hover a {
-        background: #0056b3;
-        transition: background 0.3s ease;
-    }
-
-/* ========================================
-   CORREÇÃO DE TAMANHO DE IMAGENS - Claudio
-   ======================================== */
-
-/* Imagens geradas pela IA */
-.card img {
-    width: 100%;
-    height: auto;
-    max-height: 600px;
-    object-fit: cover;
-    border-radius: 8px;
-    display: block;
-}
-
-/* Container de imagem */
-.image-container {
-    position: relative;
-    overflow: hidden;
-    border-radius: 8px;
-    max-width: 100%;
-}
-
-/* Responsividade */
-@media (max-width: 768px) {
-    .card img {
-        max-height: 400px;
-    }
-}
-
-/* ========================================
-   EFEITO DE ZOOM/LUPA ON HOVER - Claudio
-   ======================================== */
-
-/* Container preparado para zoom */
-.image-zoom-container {
-    position: relative;
-    overflow: hidden;
-    cursor: zoom-in;
-    border-radius: 8px;
-}
-
-    /* Imagem com transição suave */
-    .image-zoom-container img {
-        transition: transform 0.5s ease !important;
-        display: block;
-        width: 100%;
-    }
-    .image-zoom-container:hover img {
-        transform: scale(3,0); /* aumenta 50% */
-    }
-    
-    
- 
-
-
-
-    /* Overlay escuro sutil no hover */
-    .image-zoom-container::after {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.1);
-        opacity: 0;
-        transition: opacity 0.3s ease;
-        pointer-events: none;
-    }
-
-    .image-zoom-container:hover::after {
-        opacity: 1;
-    }
-
-    /* Ícone de lupa */
-    .image-zoom-container .zoom-icon {
-        position: absolute;
-        bottom: 10px;
-        right: 10px;
-        background: rgba(255, 255, 255, 0.9);
-        border-radius: 50%;
-        width: 40px;
-        height: 40px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        opacity: 0;
-        transition: opacity 0.3s ease;
-        pointer-events: none;
-        font-size: 1.2rem;
-    }
-
-    .image-zoom-container {
-        position: relative;
-        cursor: zoom-in;
-        border-radius: 8px;
-        overflow: visible; /* LIBERA a imagem para "sair" do quadro */
-}
-
-    /* Imagem preparada para zoom */
-    .image-zoom-container img {
-        transition: transform 0.3s ease;
-        width: 100%;
-        height: auto;
-        transform-origin: center center;
-        position: relative;
-        z-index: 1; /* mantém acima do container */
-    }
-
-        /* No hover, a imagem cresce e aparece sobre os outros */
-    .image-zoom-container img.zoomed {
-         position: absolute;
-         top: 0;
-         left: 0;
-         z-index: 9999;
-         box-shadow: 0 4px 16px rgba(0,0,0,0.3); /* sombra para destacar */
-        }
-/* Estilo para mensagem de erro de login */
-.error-banner {
-    background-color: #fef2f2;
-    border: 1px solid #fecaca;
-    color: #dc2626;
-    padding: 1rem;
-    border-radius: 8px;
-    margin-bottom: 1.5rem;
-    font-weight: 600;
-    text-align: center;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-    .error-banner .validation-summary-errors {
-        margin: 0;
-        padding: 0;
-        list-style: none;
-    }
-
-        .error-banner .validation-summary-errors li {
-            margin: 0;
-            padding: 0;
-
-
-        }
-
-/* Correção de espaçamento entre o banner de erro e o formulário */
-.error-banner {
-    margin-block-end: 1rem;
-}
-
-/* Garantir que o botão mantenha a posição ao exibir erro */
-form button[type="submit"] {
-    margin-top: 0.5rem;
-}
-
-/* Unificação visual entre Login e Register */
-.auth-container {
-    max-width: 420px;
-    margin: 0 auto;
-    padding: 1.5rem;
-}
-
-/* ===== Correção visual dos botões de Login e Logout ===== */
-button,
-input[type="submit"],
-.contrast,
-.logout {
-    background-color: var(--accent-orange) !important;
-    color: #fff !important;
-    border: none !important;
-    border-radius: 8px;
-    font-weight: 600;
-    padding: 0.9rem 1.4rem !important;
-    transition: background-color 0.25s ease, transform 0.15s ease;
-}
-
-    button:hover,
-    input[type="submit"]:hover,
-    .contrast:hover,
-    .logout:hover {
-        background-color: #1c2541 !important; /* azul escuro elegante */
         transform: translateY(-2px);
-        box-shadow: 0 4px 10px rgba(28, 37, 65, 0.3);
+        box-shadow: var(--shadow-lg);
+        filter: brightness(1.15);
     }
 
-/* Corrige botão outline do "Cadastrar-se" */
+/* Outline Buttons */
 a.contrast.outline {
-    border: 2px solid var(--accent-orange) !important;
-    color: var(--accent-orange) !important;
-    background: transparent !important;
+    background: transparent;
+    border: 1px solid var(--primary-blue);
+    color: var(--primary-blue);
+    transition: var(--transition-base);
 }
 
     a.contrast.outline:hover {
-        background-color: var(--accent-orange) !important;
-        color: #fff !important;
+        background-color: var(--primary-blue);
+        color: #fff;
+        transform: translateY(-2px);
     }
 
-.nav-links a,
-.nav-links button {
-    color: var(--primary-blue);
-    font-weight: 500;
-    text-decoration: none;
-    transition: color 0.3s ease;
+/* =============================
+   🔹 COMPONENTES COMUNS
+   ============================= */
+.divider {
+    height: 3px;
+    width: 60px;
+    background: var(--primary-blue);
+    border-radius: 2px;
+    margin: var(--spacing-md) auto;
 }
 
-    .nav-links a:hover,
-    .nav-links button:hover {
-        color: var(--accent-orange);
+footer {
+    text-align: center;
+    color: var(--muted-2);
+    padding: var(--spacing-lg);
+    font-size: 0.95rem;
+}
+
+/* =============================
+   🔹 RESPONSIVIDADE
+   ============================= */
+@media (max-width: 1024px) {
+    .navbar {
+        padding: 0 var(--spacing-sm);
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        background: var(--bg-card);
+        position: absolute;
+        right: var(--spacing-md);
+        top: 100%;
+        padding: var(--spacing-md);
+        border-radius: 8px;
+        box-shadow: var(--shadow-lg);
     }
 
+        .nav-links.show {
+            display: flex;
+        }
 
+    .burger {
+        display: block;
+    }
 
+    .content-card,
+    .content-expanded {
+        padding: var(--spacing-md);
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: var(--spacing-sm);
+    }
+
+    .brand {
+        font-size: 1.2rem;
+    }
+
+    button,
+    a.button {
+        width: 100%;
+    }
+}

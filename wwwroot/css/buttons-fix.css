@@ -1,0 +1,27 @@
+﻿/* buttons-fix.css - CORREÇÃO HOVER BOTÕES */
+
+/* Reset de transições conflitantes */
+button[type="submit"],
+button.primary,
+a.contrast.outline {
+    transition: all 0.3s ease !important;
+    transform: translateY(0) !important;
+}
+
+    /* Hover do BOTÃO ENTRAR */
+    button[type="submit"]:hover,
+    button.primary:hover {
+        transform: translateY(-3px) !important;
+        box-shadow: 0 8px 20px rgba(11, 19, 43, 0.4) !important;
+        filter: brightness(1.2) !important;
+        background-color: #1c2541 !important;
+    }
+
+    /* Hover do BOTÃO CADASTRAR */
+    a.contrast.outline:hover {
+        transform: translateY(-3px) !important;
+        box-shadow: 0 8px 20px rgba(11, 19, 43, 0.4) !important;
+        background-color: #0b132b !important;
+        color: white !important;
+        border-color: #0b132b !important;
+    }

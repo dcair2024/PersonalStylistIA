@@ -173,3 +173,36 @@ a.contrast.outline {
         background-color: var(--accent-orange) !important;
         color: #fff !important;
     }
+
+
+
+.nav-links a,
+.nav-links button {
+    transition: all 0.3s ease !important;
+    border-radius: 6px !important;
+    padding: 0.5rem 1rem !important;
+}
+
+    .nav-links a:hover,
+    .nav-links button:hover {
+        color: var(--primary-blue) !important;
+        transform: translateY(-2px) !important;
+        box-shadow: 0 4px 8px rgba(11, 19, 43, 0.2) !important;
+        background-color: rgba(11, 19, 43, 0.05) !important;
+    }
+
+    /* Botões com estilo especial (Login/Cadastrar) */
+    .nav-links a[role="button"],
+    .nav-links button[type="submit"] {
+        background-color: var(--accent-orange) !important;
+        color: white !important;
+        border: none !important;
+        box-shadow: 0 2px 6px rgba(11, 19, 43, 0.15) !important;
+    }
+
+        .nav-links a[role="button"]:hover,
+        .nav-links button[type="submit"]:hover {
+            background-color: #1c2541 !important;
+            transform: translateY(-2px) !important;
+            box-shadow: 0 4px 12px rgba(11, 19, 43, 0.3) !important;
+        }
