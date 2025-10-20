@@ -3,15 +3,6 @@
    Refeito por Claudio - Revisão FT-017.2 (15/10/2025)
    ========================================================= */
 
-:root {
-    --primary-blue: #1D4A89;
-    --accent-orange: #FF6600;
-    --error-red: #ef4444;
-    --gray-dark: #4A5568;
-    --gray-light: #6B7280;
-    --font-heading: 'Montserrat', sans-serif;
-    --font-body: 'Open Sans', sans-serif;
-}
 
 /* ===== Reset visual local ===== */
 .recommendations-container * {
@@ -85,26 +76,6 @@
         box-shadow: 0 0 0 3px rgba(29,74,137,0.15);
     }
 
-/* ===== Botão principal ===== */
-.recommendations-container button[type="submit"],
-.recommendations-container button.contrast {
-    background: var(--accent-orange) !important;
-    color: #fff !important;
-    border: none;
-    border-radius: 8px;
-    padding: 0.9rem 1.5rem;
-    font-size: 1.1rem;
-    font-weight: 600;
-    cursor: pointer;
-    margin-top: 1.5rem;
-    transition: all 0.3s ease;
-    display: inline-block;
-}
-
-.recommendations-container button:hover {
-    background: #cc5200 !important;
-    transform: translateY(-3px);
-    box-shadow: 0 6px 18px rgba(255, 102, 0, 0.25);
 }
 
 /* ===== Estados ===== */

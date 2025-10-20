@@ -156,11 +156,13 @@ footer {
     }
 }
 :root {
-    --primary-blue: #0077cc;
-    --accent-orange: #ff8c42;
+    --primary-blue: #0b132b;
+    --accent-orange: #0b132b; /* cor escura estilo do botão da imagem */
     --muted-2: #777;
     --error-red: #cc0000;
     --font-heading: 'Montserrat', sans-serif;
+    --font-body: 'Open Sans', sans-serif;
+}
 }
 a.contrast.outline {
     border: 2px solid var(--accent-orange) !important;

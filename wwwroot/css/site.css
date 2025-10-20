@@ -28,18 +28,18 @@ body {
     margin-bottom: 60px;
 }
 
-/* ============================
-   Custom Theme (Carol → Claudio)
-============================ */
 /* Importando fontes do Google */
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;600&display=swap');
 
-/* Variáveis globais */
 :root {
-    --primary: #0057ff;
-    --primary-hover: #ff9900;
-    --contrast: #ffffff;
+    --primary-blue: #0b132b;
+    --accent-orange: #0b132b; /* cor escura estilo do botão da imagem */
+    --muted-2: #777;
+    --error-red: #cc0000;
+    --font-heading: 'Montserrat', sans-serif;
+    --font-body: 'Open Sans', sans-serif;
 }
+
 
 
 /* Exemplo de aplicação base para manter consistência */
@@ -49,19 +49,31 @@ body {
     color: var(--muted-1);
 }
 
-button, .contrast {
-    background: var(--primary-blue);
-    color: white;
-    border-radius: 8px;
-    padding: 0.5rem 1rem;
-    font-weight: 600;
+button,
+a[role="button"],
+input[type="submit"],
+.contrast,
+.generate-btn {
+    background-color: var(--accent-orange) !important;
+    color: #fff !important;
     border: none;
-    transition: background 0.3s ease;
+    border-radius: 8px;
+    font-weight: 600;
+    padding: 0.9rem 1.5rem;
+    transition: all 0.25s ease;
+    box-shadow: 0 3px 8px rgba(11, 19, 43, 0.15);
 }
 
-    button:hover, .contrast:hover {
-        background: var(--accent-orange);
+    button:hover,
+    a[role="button"]:hover,
+    input[type="submit"]:hover,
+    .contrast:hover,
+    .generate-btn:hover {
+        background-color: #1c2541 !important;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(11, 19, 43, 0.3);
     }
+
 
 
 /* Fonte global */
@@ -326,6 +338,54 @@ form button[type="submit"] {
     margin: 0 auto;
     padding: 1.5rem;
 }
+
+/* ===== Correção visual dos botões de Login e Logout ===== */
+button,
+input[type="submit"],
+.contrast,
+.logout {
+    background-color: var(--accent-orange) !important;
+    color: #fff !important;
+    border: none !important;
+    border-radius: 8px;
+    font-weight: 600;
+    padding: 0.9rem 1.4rem !important;
+    transition: background-color 0.25s ease, transform 0.15s ease;
+}
+
+    button:hover,
+    input[type="submit"]:hover,
+    .contrast:hover,
+    .logout:hover {
+        background-color: #1c2541 !important; /* azul escuro elegante */
+        transform: translateY(-2px);
+        box-shadow: 0 4px 10px rgba(28, 37, 65, 0.3);
+    }
+
+/* Corrige botão outline do "Cadastrar-se" */
+a.contrast.outline {
+    border: 2px solid var(--accent-orange) !important;
+    color: var(--accent-orange) !important;
+    background: transparent !important;
+}
+
+    a.contrast.outline:hover {
+        background-color: var(--accent-orange) !important;
+        color: #fff !important;
+    }
+
+.nav-links a,
+.nav-links button {
+    color: var(--primary-blue);
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+    .nav-links a:hover,
+    .nav-links button:hover {
+        color: var(--accent-orange);
+    }
 
 
 

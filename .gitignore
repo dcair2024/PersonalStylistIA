@@ -11,22 +11,22 @@
 [Oo]bj/
 packages/
 *.nupkg
-*.db
 
 # 💾 --- BANCO DE DADOS (SQLite/Entity Framework Core) ---
-# Ignora o arquivo de banco de dados do SQLite
 *.db
+*.db-shm
+*.db-wal
 
 # 🧩 --- CONFIGURAÇÕES DE SECRETS/PROJETO ---
-# ESTE É O PONTO CRÍTICO:
-# Garante que arquivos com chaves reais (secrets) NUNCA sejam enviados.
+# ✅ CORREÇÃO: Só ignora os arquivos de DESENVOLVIMENTO com chaves
 appsettings.Development.json
 appsettings.*.local.json
+*.local.config
 .secrets/
-
-# Ignora o arquivo que armazena as chaves locais do Visual Studio (User Secrets)
-# Geralmente fica fora da pasta do projeto
 **/secrets.json
+
+# 🚀 MANTENHA appsettings.json NO CONTROLE DE VERSÃO
+# (mas sem chaves reais - use placeholders)
 
 # 🚧 --- NODE.JS / FRONTEND (se aplicável) ---
 node_modules/
@@ -40,48 +40,3 @@ wwwroot/lib/
 *.tmp
 *.log
 *.bak
-*.db
-*.db-shm
-*.db-wal
-
-# 🧠 --- CONFIGURAÇÃO PADRÃO DO VISUAL STUDIO ---
-.vs/
-*.user
-*.aps
-*.pdb
-*.userosscache
-*.suo
-
-# 🧰 --- BUILD E DEPENDÊNCIAS (NuGet, Binários) ---
-[Bb]in/
-[Oo]bj/
-packages/
-*.nupkg
-*.db
-
-# 💾 --- BANCO DE DADOS (SQLite/Entity Framework Core) ---
-*.db
-
-# 🧩 --- CONFIGURAÇÕES DE SECRETS/PROJETO ---
-# 🔒 Evita que chaves da OpenAI ou credenciais sejam enviadas
-appsettings.json
-appsettings.Development.json
-appsettings.*.local.json
-.secrets/
-**/secrets.json
-
-# 🚧 --- NODE.JS / FRONTEND (se aplicável) ---
-node_modules/
-npm-debug.log*
-wwwroot/lib/
-
-# 🧪 --- VISUAL STUDIO CODE ---
-.vscode/
-
-# 🔒 --- ARQUIVOS TEMPORÁRIOS E LOGS ---
-*.tmp
-*.log
-*.bak
-*.db-shm
-*.db-wal
-
