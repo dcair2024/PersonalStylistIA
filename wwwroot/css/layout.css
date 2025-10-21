@@ -13,6 +13,7 @@ header {
     padding: 1rem 0;
 }
 
+/* CORREÇÃO CRÍTICA: Adicionar position: relative para ancorar o nav-links mobile */
 .navbar {
     display: flex;
     align-items: center;
@@ -21,6 +22,7 @@ header {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 1rem;
+    position: relative; /* <-- ANCORA O MENU ABSOLUTO */
 }
 
 .brand {
@@ -59,6 +61,7 @@ header {
     margin-right: 1rem;
 }
 
+/* Padrão desktop: oculto */
 .burger {
     display: none;
     font-size: 1.5rem;
@@ -126,35 +129,51 @@ footer {
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
-@@media (max-width: 900px) {
+/* --- REGRAS MOBILE (CORRIGIDAS) --- */
+@media (max-width: 900px) {
+    /* Menu links: posição, oculto por padrão */
     .nav-links {
         display: none;
         flex-direction: column;
         gap: 0.5rem;
         background: white;
-        position: absolute;
+        position: absolute; /* Agora ancorado no .navbar */
         top: 100%;
         right: 1rem;
         padding: 1rem;
         border-radius: 8px;
         box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         z-index: 100;
+        /* Adiciona a largura total para mobile que estava no bloco final */
+        width: calc(100% - 2rem);
+        left: 1rem;
     }
 
         .nav-links.show {
             display: flex;
         }
 
+    /* Burger: aparece */
     .burger {
         display: block;
     }
 
+    /* Links e botões: layout de coluna */
     .nav-links a, .nav-links button {
         padding: 0.5rem 0;
         width: 100%;
         text-align: left;
     }
+
+    /* Correção: O espaçamento do navbar precisa ser ajustado */
+    .navbar {
+        flex-wrap: wrap; /* Permite que o .nav-links use a largura total */
+    }
 }
+/* --- FIM DAS REGRAS MOBILE --- */
+
+
+/* VARIÁVEIS CSS (ROOT) */
 :root {
     --primary-blue: #0b132b;
     --accent-orange: #0b132b; /* cor escura estilo do botão da imagem */
@@ -163,7 +182,8 @@ footer {
     --font-heading: 'Montserrat', sans-serif;
     --font-body: 'Open Sans', sans-serif;
 }
-}
+
+/* ESTILOS DE BOTÕES E LINKS (MOVENDO BLOCOS PARA FORA DA SINTAXE QUEBRADA) */
 a.contrast.outline {
     border: 2px solid var(--accent-orange) !important;
     color: var(--accent-orange) !important;
@@ -173,8 +193,6 @@ a.contrast.outline {
         background-color: var(--accent-orange) !important;
         color: #fff !important;
     }
-
-
 
 .nav-links a,
 .nav-links button {
@@ -206,3 +224,5 @@ a.contrast.outline {
             transform: translateY(-2px) !important;
             box-shadow: 0 4px 12px rgba(11, 19, 43, 0.3) !important;
         }
+
+/* O bloco final de @media foi MESCLADO e REMOVIDO daqui pois era inválido */

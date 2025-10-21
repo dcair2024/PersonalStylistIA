@@ -1,6 +1,4 @@
-﻿
-
-@using Microsoft.AspNetCore.Identity
+﻿@using Microsoft.AspNetCore.Identity
 @using PersonalStylistIA.Models
 @inject UserManager<ApplicationUser> UserManager
 
@@ -12,16 +10,12 @@
     <title>@ViewData["Title"] - PersonalStylistIA</title>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@@picocss/pico@1/css/pico.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+   
+    <link rel="stylesheet" href="~/css/layout.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/buttons-fix.css" asp-append-version="true" />
 
-    <!-- ✅ Corrigido: renderiza CSS das páginas que tiverem @@section Styles -->
     @await RenderSectionAsync("Styles", required: false)
     @RenderSection("HeadExtras", required: false)
-    <link rel="stylesheet" href="~/css/theme.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/layout.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/css/buttons-fix.css">
-    
-
 </head>
 
 <body>
@@ -29,35 +23,31 @@
         <div class="navbar">
             <div class="brand">Personal Stylist IA</div>
 
-            <div class="nav-links" role="navigation">
-                <div class="nav-links" role="navigation">
-                    @if (User.Identity?.IsAuthenticated == true)
-                    {
-                        var user = await UserManager.GetUserAsync(User);
-                        var nomeExibicao = user?.NomeCompleto ?? User.Identity?.Name ?? "Usuário";
-                        var primeiroNome = nomeExibicao?.Split(' ')[0] ?? nomeExibicao;
+            <nav class="nav-links" role="navigation">
+                @if (User.Identity?.IsAuthenticated == true)
+                {
+                    var user = await UserManager.GetUserAsync(User);
+                    var nomeExibicao = user?.NomeCompleto ?? User.Identity?.Name ?? "Usuário";
+                    var primeiroNome = nomeExibicao?.Split(' ')[0] ?? nomeExibicao;
 
-                        <span class="muted">Olá, @primeiroNome!</span>
-                        <a asp-page="/Index">🏠 Início</a>
-                        <a asp-page="/Recommendations/Index">💡 Recomendações</a>
-                        <form method="post" asp-page="/Account/Logout" style="display:inline;">
-                            <button type="submit" class="logout">Logout</button>
-                        </form>
-                    }
-                    else
-                    {
-                        <a asp-page="/Index">🏠 Início</a>
-                        <a asp-page="/Recommendations/Index">💡 Recomendações</a>
-                        <a asp-page="/Privacy">🔒 Privacy</a>
-                        <a asp-page="/Account/Login">👤 Login</a>
-                        <a asp-page="/Account/Register" class="contrast outline">📝 Cadastrar</a>
-                    }
-                </div>
+                    <span class="muted">Olá, @primeiroNome!</span>
+                    <a asp-page="/Index">🏠 Início</a>
+                    <a asp-page="/Recommendations/Index">💡 Recomendações</a>
+                    <form method="post" asp-page="/Account/Logout" style="display:inline;">
+                        <button type="submit" class="logout">Logout</button>
+                    </form>
+                }
+                else
+                {
+                    <a asp-page="/Index">🏠 Início</a>
+                    <a asp-page="/Recommendations/Index">💡 Recomendações</a>
+                    <a asp-page="/Privacy">🔒 Privacy</a>
+                    <a asp-page="/Account/Login">👤 Login</a>
+                    <a asp-page="/Account/Register" class="contrast outline">📝 Cadastrar</a>
+                }
+            </nav>
 
-
-            </div>
-
-            <div class="burger" aria-hidden="true">☰</div>
+            <div class="burger" aria-label="Abrir menu" aria-expanded="false">☰</div>
         </div>
     </header>
 
@@ -68,7 +58,6 @@
     <footer>
         <p>&copy; 2025 - Personal Stylist IA - <a asp-page="/Privacy">Privacy</a></p>
         <a asp-page="/Recommendations/Index">Recomendações</a>
-
     </footer>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -76,12 +65,7 @@
 
     @await RenderSectionAsync("Scripts", required: false)
 
-    <script>
-        document.querySelector('.burger').addEventListener('click', () => {
-            document.querySelector('.nav-links').classList.toggle('show');
-        });
-    </script>
-
+    <script src="~/js/burger.js" asp-append-version="true"></script>
 
 </body>
 </html>

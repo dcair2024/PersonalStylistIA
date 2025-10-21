@@ -186,53 +186,56 @@ footer {
     font-size: 0.95rem;
 }
 
-/* =============================
-   🔹 RESPONSIVIDADE
-   ============================= */
-@media (max-width: 1024px) {
-    .navbar {
-        padding: 0 var(--spacing-sm);
-    }
-}
-
-@media (max-width: 768px) {
+/* ---------- MENU RESPONSIVO (fix) ---------- */
+/* Esconde os links no mobile e mostra o burger */
+@media (max-width: 900px) {
     .nav-links {
-        display: none;
+        display: none !important; /* escondido por padrão */
         flex-direction: column;
-        background: var(--bg-card);
+        gap: 0.5rem;
+        background: #fff;
         position: absolute;
-        right: var(--spacing-md);
-        top: 100%;
-        padding: var(--spacing-md);
+        top: 64px; /* ajusta conforme header */
+        right: 1rem;
+        padding: 1rem;
         border-radius: 8px;
-        box-shadow: var(--shadow-lg);
+        box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+        z-index: 9999;
     }
 
         .nav-links.show {
-            display: flex;
+            display: flex !important; /* exibido quando a classe .show está presente */
         }
 
     .burger {
-        display: block;
+        display: block !important; /* garanto que burger aparece em mobile */
+        cursor: pointer;
+        font-size: 1.4rem;
+        color: var(--muted-1);
+        background: transparent;
+        border: none;
+        padding: 0.25rem 0.5rem;
     }
 
-    .content-card,
-    .content-expanded {
-        padding: var(--spacing-md);
+    /* garante que .nav-links a/botões fiquem full-width no menu mobile */
+    .nav-links a,
+    .nav-links button {
+        width: 100%;
+        padding: 0.6rem 0.5rem;
+        text-align: left;
     }
 }
 
-@media (max-width: 480px) {
-    body {
-        padding: var(--spacing-sm);
+/* Desktop: mostra nav-links normalmente e esconde burger */
+@media (min-width: 901px) {
+    .nav-links {
+        display: flex !important;
+        position: static;
+        box-shadow: none;
+        background: none;
     }
 
-    .brand {
-        font-size: 1.2rem;
-    }
-
-    button,
-    a.button {
-        width: 100%;
+    .burger {
+        display: none !important;
     }
 }
