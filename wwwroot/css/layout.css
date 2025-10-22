@@ -1,4 +1,7 @@
-﻿body {
+﻿@import url('/css/site.css');
+
+
+body {
     font-family: 'Open Sans', sans-serif;
     background-color: #F9FAFB;
     margin: 0;
@@ -7,11 +10,18 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
+/* =============================
+   🔹 NAVBAR
+   ============================= */
 header {
-    background: white;
-    box-shadow: 0 2px 6px rgba(11,22,38,0.06);
-    padding: 1rem 0;
+    position: relative;
+    z-index: 200000; /* Z-Index MÁXIMO para o cabeçalho (Reforçado) */
 }
+
+    header .navbar {
+        z-index: 200000;
+        position: relative;
+    }
 
 /* CORREÇÃO CRÍTICA: Adicionar position: relative para ancorar o nav-links mobile */
 .navbar {
@@ -225,4 +235,4 @@ a.contrast.outline {
             box-shadow: 0 4px 12px rgba(11, 19, 43, 0.3) !important;
         }
 
-/* O bloco final de @media foi MESCLADO e REMOVIDO daqui pois era inválido */
+

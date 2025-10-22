@@ -1,12 +1,11 @@
-﻿/* =============================
-   🎨 Personal Stylist IA - Tema Global
-   Autor: Claudio (Front / CSS / Layout)
-   Data: 20/10/2025
-   ============================= */
-
+﻿* =============================
+🎨 Personal Stylist IA - Tema Global
+Autor: Claudio (Front / CSS / Layout)
+Data: 20/10/2025
+============================= */
 /* =============================
-   🔹 VARIÁVEIS GLOBAIS
-   ============================= */
+    🔹 VARIÁVEIS GLOBAIS
+    ============================= */
 :root {
     /* 🎨 Cores Principais */
     --primary-blue: #1D4A89;
@@ -37,8 +36,8 @@
 }
 
 /* =============================
-   🔹 ESTRUTURA GLOBAL
-   ============================= */
+    🔹 ESTRUTURA GLOBAL
+    ============================= */
 body {
     font-family: var(--font-body);
     background-color: var(--bg-main);
@@ -50,13 +49,20 @@ body {
 }
 
 /* =============================
-   🔹 NAVBAR
-   ============================= */
+    🔹 NAVBAR
+    ============================= */
+
+/* 🚀 FIX: Eleva o contexto de empilhamento de toda a seção de cabeçalho */
 header {
-    background: var(--bg-card);
-    box-shadow: var(--shadow-sm);
-    padding: var(--spacing-md) 0;
+    position: relative;
+    z-index: 200000; /* Z-Index MÁXIMO para o cabeçalho (Reforçado) */
 }
+
+    header .navbar {
+        z-index: 200000;
+        position: relative;
+    }
+
 
 .navbar {
     display: flex;
@@ -109,8 +115,8 @@ header {
 }
 
 /* =============================
-   🔹 CONTEÚDO PRINCIPAL
-   ============================= */
+    🔹 CONTEÚDO PRINCIPAL
+    ============================= */
 main.page-wrapper {
     max-width: 1200px;
     margin: var(--spacing-xl) auto;
@@ -125,14 +131,15 @@ main.page-wrapper {
     padding: var(--spacing-lg);
 }
 
+
 .content-card {
-    max-width: 900px;
-    margin: 0 auto;
+    /* Removido position: relative e z-index: 1 para que o cartão não crie um stacking context que concorra com o menu */
 }
 
+
 /* =============================
-   🔹 BOTÕES GLOBAIS
-   ============================= */
+    🔹 BOTÕES GLOBAIS
+    ============================= */
 button,
 a.button,
 input[type="submit"] {
@@ -169,8 +176,8 @@ a.contrast.outline {
     }
 
 /* =============================
-   🔹 COMPONENTES COMUNS
-   ============================= */
+    🔹 COMPONENTES COMUNS
+    ============================= */
 .divider {
     height: 3px;
     width: 60px;
@@ -200,11 +207,14 @@ footer {
         padding: 1rem;
         border-radius: 8px;
         box-shadow: 0 6px 20px rgba(0,0,0,0.08);
-        z-index: 9999;
+        z-index: 9999; /* z-index padrão para mobile */
     }
 
+        /* CORREÇÃO DE Z-INDEX: Aplica o alto z-index quando o menu está aberto */
         .nav-links.show {
             display: flex !important; /* exibido quando a classe .show está presente */
+            z-index: 200001 !important; /* Força z-index superior a qualquer elemento (Reforçado) */
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12); /* Sombra ajustada */
         }
 
     .burger {
@@ -239,3 +249,105 @@ footer {
         display: none !important;
     }
 }
+
+/* buttons-fix.css - CORREÇÃO HOVER BOTÕES */
+
+/* Reset de transições conflitantes */
+button[type="submit"],
+button.primary,
+a.contrast.outline {
+    transition: all 0.3s ease !important;
+    transform: translateY(0) !important;
+}
+
+    /* Hover do BOTÃO ENTRAR */
+    button[type="submit"]:hover,
+    button.primary:hover {
+        transform: translateY(-3px) !important;
+        box-shadow: 0 8px 20px rgba(11, 19, 43, 0.4) !important;
+        filter: brightness(1.2) !important;
+        background-color: #1c2541 !important;
+    }
+
+    /* Hover do BOTÃO CADASTRAR */
+    a.contrast.outline:hover {
+        transform: translateY(-3px) !important;
+        box-shadow: 0 8px 20px rgba(11, 19, 43, 0.4) !important;
+        background-color: #0b132b !important;
+        color: white !important;
+        border-color: #0b132b !important;
+    }
+/* =============================
+    📱 BREAKPOINTS UNIFICADOS
+    ============================= */
+@media (max-width: 480px) {
+    .navbar, .page-wrapper {
+        padding: 0 var(--spacing-sm);
+    }
+
+    .brand {
+        font-size: 1.2rem;
+    }
+
+    button, a.button {
+        font-size: 0.9rem;
+        padding: var(--spacing-sm) var(--spacing-md);
+    }
+
+    .content-card, .content-expanded {
+        padding: var(--spacing-md);
+    }
+}
+
+@media (max-width: 768px) {
+    .grid, .features-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+    }
+
+    .nav-links a, .nav-links button {
+        width: 100%;
+        text-align: left;
+    }
+}
+
+@media (min-width: 1024px) {
+    .page-wrapper {
+        padding: 0 var(--spacing-lg);
+    }
+
+    .content-card, .content-expanded {
+        max-width: 1200px;
+    }
+}
+/* ========== 🔧 FIX FINAL MENU HAMBÚRGUER ATRÁS DOS CARDS ========== */
+
+/* 1️⃣ Remove contextos de empilhamento conflitantes */
+header, header .navbar {
+    position: static !important;
+    z-index: auto !important;
+}
+
+/* 2️⃣ Garante que os cards fiquem abaixo de qualquer overlay */
+.content-card, .content-expanded {
+    position: relative;
+    z-index: 1;
+}
+
+/* 3️⃣ Eleva o menu móvel acima de tudo */
+@media (max-width: 900px) {
+    .nav-links {
+        position: absolute !important;
+        top: 64px !important; /* ou o valor do topo do seu header */
+        right: 1rem !important;
+        background: #fff !important;
+        border-radius: 8px;
+        box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+        z-index: 99999 !important; /* nível máximo real */
+    }
+
+        .nav-links.show {
+            display: flex !important;
+        }
+}
+

@@ -1,4 +1,7 @@
 ﻿/* recommendations.css */
+
+@import url('/css/site.css');
+
 .recommendation-card {
     border: 1px solid #e2e8f0;
     border-radius: 12px;
@@ -193,3 +196,22 @@
             width: 100%;
         }
 }
+
+/* --- CORREÇÃO FINAL PARA O BOTÃO GERAR RECOMENDAÇÕES --- */
+
+/* Força a cor base correta */
+.recommendations-container button[type="submit"] {
+    background-color: var(--primary-blue) !important;
+    color: white !important;
+}
+
+    /* Mantém o estado desabilitado correto */
+    .recommendations-container button[type="submit"]:disabled {
+        background-color: var(--muted-2) !important;
+        filter: none !important;
+    }
+
+    /* Remove qualquer conflito de hover remanescente, confiando no buttons-fix.css */
+    .recommendations-container button[type="submit"]:hover {
+        /* Deixe o buttons-fix.css cuidar do hover (agora que você o corrigiu) */
+    }

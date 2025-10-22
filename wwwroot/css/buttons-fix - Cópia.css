@@ -20,7 +20,8 @@ a.contrast.outline {
     /* Hover do BOTÃO CADASTRAR */
     a.contrast.outline:hover {
         transform: translateY(-3px) !important;
-        
+        box-shadow: 0 8px 20px rgba(11, 19, 43, 0.4) !important;
+        background-color: #0b132b !important;
         color: white !important;
         border-color: #0b132b !important;
     }

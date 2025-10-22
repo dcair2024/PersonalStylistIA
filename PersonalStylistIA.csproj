@@ -30,6 +30,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\css\buttons-fix - Cópia.css" />
     <Content Remove="wwwroot\js\menu.js" />
   </ItemGroup>
 

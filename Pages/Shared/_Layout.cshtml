@@ -2,6 +2,7 @@
 @using PersonalStylistIA.Models
 @inject UserManager<ApplicationUser> UserManager
 
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -10,11 +11,13 @@
     <title>@ViewData["Title"] - PersonalStylistIA</title>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@@picocss/pico@1/css/pico.min.css">
-   
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    
     <link rel="stylesheet" href="~/css/layout.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/buttons-fix.css" asp-append-version="true" />
 
-    @await RenderSectionAsync("Styles", required: false)
+
+    
     @RenderSection("HeadExtras", required: false)
 </head>
 
@@ -66,6 +69,10 @@
     @await RenderSectionAsync("Scripts", required: false)
 
     <script src="~/js/burger.js" asp-append-version="true"></script>
+    <script defer src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("ExtraScripts", required: false)
+
+
 
 </body>
 </html>

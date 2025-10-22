@@ -60,6 +60,50 @@
     });
 </script>
 <style>
+    /* ===== CORREÇÃO: estilo da página de login (sem erros de sintaxe) ===== */
+
+    .error-banner {
+        /* Mantém a estrutura de bloco para animação e alinhamento */
+        display: block;
+        text-align: center;
+        margin-bottom: 1rem;
+        padding: 0;
+        border: none;
+        background-color: transparent;
+        animation: fadeIn 0.25s ease-in;
+    }
+
+        /* Remove bullet e padding do ul gerado pelo asp-validation-summary */
+        .error-banner ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+            /* Estilo dos itens de erro */
+            .error-banner ul li {
+                color: #a10000;
+                font-weight: 700;
+                font-size: 1.05rem;
+            }
+
+    /* Keyframes corretos (sem @@ e sem blocos extras) */
+    @@keyframes fadeIn {
+        from
+
+    {
+        opacity: 0;
+        transform: translateY(-4px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    }
+
+    /* Campos do card */
     .content-card input,
     .content-card select,
     .content-card button {
@@ -85,26 +129,4 @@
     .content-card h2 {
         font-size: 1.1rem;
     }
-
-    @@media (max-width: 600px) {
-        .content-card
-
-    {
-        padding: 1rem;
-        border-radius: 8px;
-    }
-
-    .content-card h1 {
-        font-size: 1.4rem;
-    }
-
-    .content-card h2 {
-        font-size: 1rem;
-    }
-
-    }
 </style>
-
-@section Scripts {
-    <partial name="_ValidationScriptsPartial" />
-}
