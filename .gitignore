@@ -19,11 +19,15 @@ packages/
 
 # 🧩 --- CONFIGURAÇÕES DE SECRETS/PROJETO ---
 # ✅ CORREÇÃO: Só ignora os arquivos de DESENVOLVIMENTO com chaves
-appsettings.Development.json
-appsettings.*.local.json
+
 *.local.config
 .secrets/
 **/secrets.json
+aappsettings.Local.json
+appsettings.Development.json
+appsettings.Production.json
+appsettings.json
+
 
 # 🚀 MANTENHA appsettings.json NO CONTROLE DE VERSÃO
 # (mas sem chaves reais - use placeholders)
