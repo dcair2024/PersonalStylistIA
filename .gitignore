@@ -43,4 +43,6 @@ wwwroot/lib/
 # 🔒 --- ARQUIVOS TEMPORÁRIOS E LOGS ---
 *.tmp
 *.log
-*.bak
+*.bak"appsettings.Development.json" 
+"appsettings.*.local.json" 
+"*.secrets.json" 
