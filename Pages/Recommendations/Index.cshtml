@@ -1,5 +1,6 @@
-﻿@page
+﻿@page "{handler?}"
 @model PersonalStylistIA.Pages.Recommendations.IndexModel
+
 @{
     ViewData["Title"] = "Recomendações de Estilo IA";
 }
@@ -10,30 +11,26 @@
         <p>Descreva a ocasião e receba sugestões personalizadas</p>
     </header>
 
-    <!-- FORMULÁRIO DE INPUT -->
+    <!-- FORMULÁRIO -->
     <form method="post" asp-page-handler="Generate">
         <div class="input-section">
             <textarea asp-for="UserInput"
                       placeholder="Ex: Look para formatura noturna, roupa casual para date no parque..."
                       maxlength="500"
                       rows="4"></textarea>
+
             <span asp-validation-for="UserInput" class="text-danger"></span>
 
             <div class="input-options">
-                <select>
-                    <option>Estilo: Casual</option>
-                    <option>Estilo: Formal</option>
-                    <option>Estilo: Esportivo</option>
+                <select asp-for="StyleSelected">
+                    <option value="Casual">Estilo: Casual</option>
+                    <option value="Formal">Estilo: Formal</option>
+                    <option value="Esportivo">Estilo: Esportivo</option>
+                    <option value="Elegant">Estilo: Elegante</option>
                 </select>
-                <button type="submit" class="generate-btn" disabled="@Model.IsLoading">
-                    @if (Model.IsLoading)
-                    {
-                        <span>⏳ Gerando...</span>
-                    }
-                    else
-                    {
-                        <span>✨ Gerar Recomendações</span>
-                    }
+
+                <button type="submit" class="generate-btn" id="generateBtn">
+                    <span>✨ Gerar Recomendações</span>
                 </button>
             </div>
         </div>
@@ -41,40 +38,61 @@
 
     <!-- ESTADOS DINÂMICOS -->
     <div class="results-container">
+
+        @* Estado de carregamento *@
         @if (Model.IsLoading)
         {
-            <!-- LOADING STATE -->
             <div class="loading-state">
                 <div class="spinner"></div>
-                <p>Analisando seu estilo...</p>
+                <p>Gerando recomendação personalizada...</p>
             </div>
         }
-        else if (Model.HasError)
+
+        @* Estado de erro *@
+        @if (Model.HasError)
         {
-            <!-- ERROR STATE -->
             <div class="error-state">
                 <div class="error-icon">⚠️</div>
-                <p>Erro interno na geração de recomendação.</p>
-                <button class="retry-btn" onclick="location.reload()">Tentar novamente</button>
+                <p>@(string.IsNullOrEmpty(Model.ErrorMessage) ? "Erro ao gerar recomendação." : Model.ErrorMessage)</p>
+                <button class="retry-btn" type="button" onclick="document.querySelector('form').reset(); location.reload();">
+                    Tentar novamente
+                </button>
             </div>
         }
-        else if (!string.IsNullOrEmpty(Model.RecommendationResult))
+
+        @* Resultado *@
+        @if (!string.IsNullOrEmpty(Model.RecommendationResult) && !Model.HasError)
         {
-            <!-- RESULTS STATE -->
             <div class="recommendation-card">
                 <div class="card-header">
-                    <span class="occasion-tag">🎓 Recomendação</span>
-                    <button class="button">💾</button>
+                    <span class="occasion-tag">✨ Recomendação</span>
+                    <button type="button" class="button" onclick="saveRecommendation()">💾</button>
                 </div>
+
                 <div class="recommendation-content">
-                    <p>@Model.RecommendationResult</p>
+                    <p>@Html.Raw(Model.RecommendationResult.Replace("\n", "<br>"))</p>
                 </div>
+
                 <div class="card-footer">
                     <small>Gerado agora</small>
                 </div>
             </div>
         }
+
     </div>
 </div>
 
+<script>
+    function saveRecommendation() {
+        alert('Recomendação salva com sucesso! ✅');
+        // Aqui você pode implementar a lógica de salvar no banco
+    }
 
+    document.getElementById('generateBtn').addEventListener('click', function() {
+        const textarea = document.querySelector('textarea');
+        if (textarea.value.trim().length < 10) {
+            alert('⚠️ Por favor, descreva a ocasião com mais detalhes!');
+            return false;
+        }
+    });
+</script>

@@ -6,6 +6,9 @@ using PersonalStylistIA.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
+var apiKeyTest = Environment.GetEnvironmentVariable("OPENAI_API_KEY");
+Console.WriteLine("🔑 API KEY DETECTADA: " + (apiKeyTest ?? "NÃO ENCONTRADA"));
+
 builder.Configuration
     .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
     .AddJsonFile("appsettings.Local.json", optional: true, reloadOnChange: true)
